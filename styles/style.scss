@@ -23,9 +23,11 @@ body {
 
     &__button {
         padding: 0.5rem 1rem;
+        margin-right: 0.2rem;
 
         &:hover {
             background-color:  rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
         }
 
         
@@ -59,6 +61,7 @@ body {
 
         &:hover {
             background-color:  rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
         }
     }
 
@@ -80,6 +83,7 @@ body {
         padding: 0.5rem;
         border-right: 1px solid black;
         border-bottom: 1px solid black;
+        backdrop-filter: blur(20px);
     }
 
     &__button {
@@ -94,6 +98,7 @@ body {
         }
         &:hover {
             background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
         }
 
         &--border {
@@ -106,29 +111,35 @@ body {
 }
 
 .window {
+    margin-top: 3rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-wrap: nowrap;
+    background-size: auto;
+    background-repeat: no-repeat;
     
     &__title {
         text-align: center;
         width: 100%;
         font-weight: bold;
+        margin-top: 0.3rem;
     }
 
     &__top {
-        display: flex;
+        display:flex;
         border-bottom: 1px solid black;
         padding: 0.5rem;
+        background-color: rgba(255, 255, 255, 0.5)
         
     }
 
     &__group {
-        margin: 0.5rem;
         height: 50vh;
         width: 50vh;
-        background-color: rgba(255, 255, 255, 0.5);
+        background-color: rgba(255, 255, 255, 0.75);
         border: 1px solid black;
+        backdrop-filter: blur(10px);
     }
     
     &__buttons {
@@ -171,18 +182,49 @@ body {
 
     &__content {
         padding: 0.5rem;
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        p {
+            margin-bottom: 0.5rem;
+            width: 100%;
+        }
+
+        // img {
+        //     height: 50%;
+        //     width: 50%;
+        //     object-fit:cover;
+        // }
     }
     
     &__subheading {
         margin-bottom: 0.5rem;
+        width: 100%;
     }
 
-    &__text {
-
-    }
 
 }
 
+.finder {
+    background-image: url(https://images.unsplash.com/photo-1549675584-91f19337af3d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1744&q=80);
+}
+.weather {
+    background-image: url(https://images.unsplash.com/photo-1517241080758-95a42c519c1a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80);
+}
+.music {
+    background-image: url(https://images.unsplash.com/photo-1549046675-dd779977de88?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1843&q=80);
+}
+
+
+header {
+    position: absolute;
+    z-index: 4;
+    top: 0;
+    width: 100vw;
+}
+
+// JS toggles
 
 .hidden {
     display: none;
@@ -190,4 +232,11 @@ body {
 
 .highlight {
     background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
 }
+
+.fullscreen {
+    height: 75vh;
+    width: 100%;
+}
+

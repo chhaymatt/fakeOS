@@ -12,7 +12,7 @@ function time() {
     const dayFull = days[d.getDay()]; // Monday, Tuesday etc.
     const s = String(d.getSeconds()).padStart(2,0); // 0-59
     const m = String(d.getMinutes()).padStart(2,0); // 0-59
-    const h = String(d.getHours()).padStart(2,0); // 0-23
+    const h = String(d.getHours()); // 0-23
     console.log(dayNumber);
     timeDisplay.innerHTML = `${dayFull} ${dayNumber} ${month} ${year} ${hours[h]}:${m}:${s}`;
 }
@@ -55,16 +55,19 @@ editButton.addEventListener("click",toggleEditMenu);
 ///  APPS
 const finderButton = document.getElementById("finderButton");
 const closeFinderButton = document.getElementById("closeFinderButton");
+const minimiseFinderButton = document.getElementById("minimiseFinderButton");
 
 const weatherButton = document.getElementById("weatherButton");
 const closeWeatherButton = document.getElementById("closeWeatherButton");
+const minimiseWeatherButton = document.getElementById("minimiseWeatherButton")
 
 const musicButton = document.getElementById("musicButton");
 const closeMusicButton = document.getElementById("closeMusicButton");
+const minimiseMusicButton = document.getElementById("minimiseMusicButton");
 
 const app = document.getElementsByClassName("window__group");
 
-
+// Open and close apps
 const toggleFinderApp = () => {
     app[0].classList.toggle("hidden")
     finderButton.classList.toggle("highlight");
@@ -82,10 +85,31 @@ const toggleMusicApp = () => {
 
 finderButton.addEventListener("click",toggleFinderApp);
 closeFinderButton.addEventListener("click",toggleFinderApp);
+minimiseFinderButton.addEventListener("click",toggleFinderApp);
 
 weatherButton.addEventListener("click",toggleWeatherApp);
 closeWeatherButton.addEventListener("click",toggleWeatherApp);
+minimiseWeatherButton.addEventListener("click",toggleWeatherApp);
 
 musicButton.addEventListener("click",toggleMusicApp);
 closeMusicButton.addEventListener("click",toggleMusicApp);
+minimiseMusicButton.addEventListener("click",toggleMusicApp);
 
+// Fullscreen apps
+const toggleFullscreenFinderApp = () => {
+    app[0].classList.toggle("fullscreen");
+}
+
+const toggleFullscreenWeatherApp = () => {
+    app[1].classList.toggle("fullscreen");
+}
+
+const toggleFullscreenMusicApp = () => {
+    app[2].classList.toggle("fullscreen");
+}
+const fullscreenFinderButton = document.getElementById("fullscreenFinderButton");
+const fullscreenWeatherButton = document.getElementById("fullscreenWeatherButton");
+const fullscreenMusicButton = document.getElementById("fullscreenMusicButton");
+fullscreenFinderButton.addEventListener("click",toggleFullscreenFinderApp);
+fullscreenWeatherButton.addEventListener("click",toggleFullscreenWeatherApp);
+fullscreenMusicButton.addEventListener("click",toggleFullscreenMusicApp);
