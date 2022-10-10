@@ -1,7 +1,7 @@
 // DATE AND TIME
 let timeDisplay = document.getElementById("timeDisplay");
 
-function time() {
+const time = () => {
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const hours = ["12", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"];
@@ -13,9 +13,15 @@ function time() {
     const s = String(d.getSeconds()).padStart(2,0); // 0-59
     const m = String(d.getMinutes()).padStart(2,0); // 0-59
     const h = String(d.getHours()); // 0-23
+    let ampm; // am or pm
+    if (h < 12) {
+        ampm = "am";
+    } else {
+        ampm = "pm";
+    }
     console.log(dayNumber);
-    timeDisplay.innerHTML = `${dayFull} ${dayNumber} ${month} ${year} ${hours[h]}:${m}:${s}`;
-}
+    timeDisplay.innerHTML = `${dayFull} ${dayNumber} ${month} ${year} ${hours[h]}:${m}:${s} ${ampm}`;
+};
 
 setInterval(time, 1000); // Refresh time every 1000 miliseconds (1 second)
 
