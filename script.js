@@ -6,21 +6,46 @@ const time = () => {
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const hours = ["12", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"];
     const d = new Date();
-    const year = d.getFullYear();
-    const month = months[d.getMonth()];
+    let year = d.getFullYear();
+    let month = months[d.getMonth()];
     const dayNumber = d.getDate(); // th of month
-    const dayFull = days[d.getDay()]; // Monday, Tuesday etc.
+    let dayFull = days[d.getDay()]; // Monday, Tuesday etc.
     const s = String(d.getSeconds()).padStart(2,0); // 0-59
     const m = String(d.getMinutes()).padStart(2,0); // 0-59
-    const h = String(d.getHours()); // 0-23
+    let h = String(d.getHours()); // 0-23
+
+    let display12 = true;
+    let displayYear = false;
+    let displayFullDay = false;
+    let displayFullMonth = false;
     let ampm; // am or pm
-    if (h < 12) {
-        ampm = "am";
-    } else {
-        ampm = "pm";
+
+    // Shorten full day - e.g. Tue
+    if (!displayFullDay) {
+        dayFull = dayFull.slice(0,3);
+    };
+
+    // Shorten full month - e.g. Oct
+    if (!displayFullMonth) {
+        month = month.slice(0,3);
+    };
+
+    // Hide year
+    if(!displayYear) {
+        year = "";
     }
-    
-    timeDisplay.innerHTML = `${dayFull} ${dayNumber} ${month} ${year} ${hours[h]}:${m}:${s} ${ampm}`;
+
+    // Show 24 houur time
+    if(display12) {
+        ampm = h < 12 ? "am" : "pm";
+        h = hours[h]
+        
+    } else {
+        ampm = "";
+    }
+
+    timeDisplay.innerHTML = `${dayFull} ${dayNumber} ${month} ${year} ${h}:${m}:${s} ${ampm}`;
+ 
 };
 
 setInterval(time, 1000); // Refresh time every 1000 miliseconds (1 second)
