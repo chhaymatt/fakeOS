@@ -78,6 +78,11 @@
                 <div class="dropdown__button">Emoji & Symbols<i class="fa-solid fa-globe"></i></div>
             </div>
 
+            <!-- Time Menu -->
+            <div class="dropdown__group hidden">
+                <div class="dropdown__button" id="hourButton">Show 24-Hour Time</div>
+            </div>
+
         </div>
         
     </header>
@@ -86,14 +91,14 @@
         <!-- Windows on the screen-->
         <div class="window">
             <div class="window finder">
-                <div class="window__group hidden">
+                <div class="window__group hidden" id="finder">
                     <div class="window__top">
                         <div class="window__buttons">
                             <div class="window__button window__button--close" id="closeFinderButton"></div>
                             <div class="window__button window__button--minimise"  id="minimiseFinderButton"></div>
-                            <div class="window__button window__button--fullscreen" id="fullscreenFinderButton"></div>
+                            <!-- <div class="window__button window__button--fullscreen" id="fullscreenFinderButton"></div> -->
                         </div>
-                        <div class="window__title">Finder</div>
+                        <div class="window__title" id="finderHeader">Finder</div>
                     </div>
                     <div class="window__bottom">
                         <div class="window__content">
@@ -105,14 +110,14 @@
                 </div>
             </div>
             <div class="window weather">
-                <div class="window__group hidden">
+                <div class="window__group hidden" id="weather">
                     <div class="window__top">
                         <div class="window__buttons">
                             <div class="window__button window__button--close" id="closeWeatherButton"></div>
                             <div class="window__button window__button--minimise"  id="minimiseWeatherButton"></div>
                             <div class="window__button window__button--fullscreen" id="fullscreenWeatherButton"></div>
                         </div>
-                        <div class="window__title">Weather</div>
+                        <div class="window__title" id="weatherHeader">Weather</div>
                     </div>
                     <div class="window__bottom">
                         <div class="window__content">
