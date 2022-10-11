@@ -80,7 +80,10 @@
 
             <!-- Time Menu -->
             <div class="dropdown__group hidden">
-                <div class="dropdown__button" id="hourButton">Show 24-Hour Time</div>
+                <div class="dropdown__button" id="hourButton">Show 24-hour time</div>
+                <div class="dropdown__button" id="dayFullButton">Show full day</div>
+                <div class="dropdown__button" id="monthFullButton">Show full month</div>
+                <div class="dropdown__button" id="yearButton">Hide year</div>
             </div>
 
         </div>
@@ -88,6 +91,21 @@
     </header>
 
     <main>
+        <!-- Shutdown Window -->
+        <!-- <div class="shutdown" id="shutdown">
+            <div class="shutdown__left">
+                <i class="fa-solid fa-power-off"></i>
+            </div>
+            <div class="shutdown__right">
+                <h3>Are you sure you want to shut down your computer now?</h3>
+                <p>If you do nothing, the computer will shut down automatically in 10 seconds.</p>
+                <div class="shutdown__buttons">
+                    <button>Shut Down</button>
+                    <button>Cancel</button>
+                </div>
+            </div>
+        </div> -->
+
         <!-- Windows on the screen-->
         <div class="window">
             <div class="window finder">
@@ -102,9 +120,45 @@
                     </div>
                     <div class="window__bottom">
                         <div class="window__content">
-                            <h1 class="window__subheading">Organise your files</h1>
-                            <p class="window__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam, nam natus culpa velit, cupiditate accusantium libero autem expedita quidem dolorem neque recusandae ipsum voluptate, nihil totam quibusdam perferendis necessitatibus pariatur?</p>
-                            <img src="" alt="">
+                            <div class="sidebar">
+                                <div class="sidebar__label">Favourites</div>
+                                <div class="sidebar__group">
+                                    <i class="fa-brands fa-app-store-ios"></i>
+                                    <p>App Store</p>
+                                </div>
+                                <div class="sidebar__group highlight">
+                                    <i class="fa-regular fa-window-maximize"></i>
+                                    <p>Desktop</p>
+                                </div>
+                                <div class="sidebar__group">
+                                    <i class="fa-solid fa-circle-arrow-down"></i>
+                                    <p>Downloads</p>
+                                </div>
+                                <div class="sidebar__group">
+                                    <i class="fa-solid fa-folder"></i>
+                                    <p>MC</p>
+                                </div>
+                                <div class="sidebar__label">iCloud</div>
+                                <div class="sidebar__group">
+                                    <i class="fa-solid fa-cloud"></i>
+                                    <p>iCloud Drive</p>
+                                </div>
+                                <div class="sidebar__group">
+                                    <i class="fa-solid fa-file"></i>
+                                    <p>Documents</p>
+                                </div>
+                                <div class="sidebar__group">
+                                    <i class="fa-regular fa-window-maximize"></i>
+                                    <p>Desktop</p>
+                                </div>
+                                <div class="sidebar__group">
+                                    <i class="fa-solid fa-user-group"></i>
+                                    <p>Shared</p>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <p>This directory is blank</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -120,7 +174,7 @@
                         <div class="window__title" id="weatherHeader">Weather</div>
                     </div>
                     <div class="window__bottom">
-                        <div class="window__content">
+                        <div class="window__content window__content--blank">
                             <h1 class="window__subheading">The weather is...</h1>
                             <p class="window__text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam, repellat error. Quas error inventore molestias repellat sunt earum nobis voluptatum delectus saepe ratione doloribus, ab libero facilis cumque sit impedit.</p>
                             <img src="" alt="">
@@ -139,7 +193,7 @@
                         <div class="window__title">Music</div>
                     </div>
                     <div class="window__bottom">
-                        <div class="window__content">
+                        <div class="window__content window__content--blank">
                             <h1 class="window__subheading">Let's listen to some tunes</h1>
                             <p class="window__text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Temporibus molestias veritatis fugit dolores ducimus nulla dolorum nam! Tenetur hic praesentium impedit, quis nihil omnis voluptatem facere enim maxime, iure vitae.</p>
                         </div>
