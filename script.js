@@ -112,16 +112,28 @@ const app = document.getElementsByClassName("window__group");
 // Open and close apps
 const toggleFinderApp = () => {
     app[0].classList.toggle("hidden")
+    app[0].classList.remove("fullscreen");
+    // Set position to be left
+    app[0].style.top = 3.5 + "rem";
+    app[0].style.left = 1 + "rem";
     finderButton.classList.toggle("highlight");
 };
 
 const toggleWeatherApp = () => {
     app[1].classList.toggle("hidden")
+    app[1].classList.remove("fullscreen");
+    // Set position to be middle
+    app[1].style.top = 3.5 + "rem";
+    app[1].style.left = 30 + "rem";
     weatherButton.classList.toggle("highlight");
 };
 
 const toggleMusicApp = () => {
     app[2].classList.toggle("hidden")
+    app[2].classList.remove("fullscreen");
+    // Set position to be right
+    app[2].style.top = 3.5 + "rem";
+    app[2].style.left = 60 + "rem";
     musicButton.classList.toggle("highlight");
 };
 
@@ -140,28 +152,39 @@ minimiseMusicButton.addEventListener("click",toggleMusicApp);
 // Fullscreen apps
 const toggleFullscreenFinderApp = () => {
     app[0].classList.toggle("fullscreen");
+    // Set position to be top left corner
+    app[0].style.top = 3.5 + "rem";
+    app[0].style.left = 0 + "rem";
 }
 
 const toggleFullscreenWeatherApp = () => {
     app[1].classList.toggle("fullscreen");
+    // Set position to be top left corner
+    app[1].style.top = 3.5 + "rem";
+    app[1].style.left = 0 + "rem";
 }
 
 const toggleFullscreenMusicApp = () => {
     app[2].classList.toggle("fullscreen");
+    // Set position to be top left corner
+    app[2].style.top = 3.5 + "rem";
+    app[2].style.left = 0 + "rem";
 }
 
 
-// const fullscreenFinderButton = document.getElementById("fullscreenFinderButton");
+const fullscreenFinderButton = document.getElementById("fullscreenFinderButton");
 const fullscreenWeatherButton = document.getElementById("fullscreenWeatherButton");
 const fullscreenMusicButton = document.getElementById("fullscreenMusicButton");
-// fullscreenFinderButton.addEventListener("click",toggleFullscreenFinderApp);
+fullscreenFinderButton.addEventListener("click",toggleFullscreenFinderApp);
 fullscreenWeatherButton.addEventListener("click",toggleFullscreenWeatherApp);
 fullscreenMusicButton.addEventListener("click",toggleFullscreenMusicApp);
 
 
-// Only making Finder draggable https://www.w3schools.com/howto/howto_js_draggable.asp
+// Source: https://www.w3schools.com/howto/howto_js_draggable.asp
 // Make the DIV element draggable:
 dragElement(document.getElementById("finder"));
+dragElement(document.getElementById("weather"));
+dragElement(document.getElementById("music"));
 
 function dragElement(elmnt) {
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;

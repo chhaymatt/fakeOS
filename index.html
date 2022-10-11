@@ -92,29 +92,29 @@
 
     <main>
         <!-- Shutdown Window -->
-        <!-- <div class="shutdown" id="shutdown">
+        <div class="shutdown hidden" id="shutdown">
             <div class="shutdown__left">
                 <i class="fa-solid fa-power-off"></i>
             </div>
             <div class="shutdown__right">
-                <h3>Are you sure you want to shut down your computer now?</h3>
+                <h5>Are you sure you want to shut down your computer now?</h5>
                 <p>If you do nothing, the computer will shut down automatically in 10 seconds.</p>
                 <div class="shutdown__buttons">
                     <button>Shut Down</button>
                     <button>Cancel</button>
                 </div>
             </div>
-        </div> -->
+        </div>
 
         <!-- Windows on the screen-->
         <div class="window">
-            <div class="window finder">
+            <div class="window">
                 <div class="window__group hidden" id="finder">
                     <div class="window__top">
                         <div class="window__buttons">
                             <div class="window__button window__button--close" id="closeFinderButton"></div>
                             <div class="window__button window__button--minimise"  id="minimiseFinderButton"></div>
-                            <!-- <div class="window__button window__button--fullscreen" id="fullscreenFinderButton"></div> -->
+                            <div class="window__button window__button--fullscreen" id="fullscreenFinderButton"></div>
                         </div>
                         <div class="window__title" id="finderHeader">Finder</div>
                     </div>
@@ -126,7 +126,7 @@
                                     <i class="fa-brands fa-app-store-ios"></i>
                                     <p>App Store</p>
                                 </div>
-                                <div class="sidebar__group highlight">
+                                <div class="sidebar__group darklight">
                                     <i class="fa-regular fa-window-maximize"></i>
                                     <p>Desktop</p>
                                 </div>
@@ -163,7 +163,7 @@
                     </div>
                 </div>
             </div>
-            <div class="window weather">
+            <div class="window">
                 <div class="window__group hidden" id="weather">
                     <div class="window__top">
                         <div class="window__buttons">
@@ -177,20 +177,19 @@
                         <div class="window__content window__content--blank">
                             <h1 class="window__subheading">The weather is...</h1>
                             <p class="window__text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam, repellat error. Quas error inventore molestias repellat sunt earum nobis voluptatum delectus saepe ratione doloribus, ab libero facilis cumque sit impedit.</p>
-                            <img src="" alt="">
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="window music">
-                <div class="window__group hidden">
+            <div class="window">
+                <div class="window__group hidden" id="music">
                     <div class="window__top">
                         <div class="window__buttons">
                             <div class="window__button window__button--close" id="closeMusicButton"></div>
                             <div class="window__button window__button--minimise"  id="minimiseMusicButton"></div>
                             <div class="window__button window__button--fullscreen" id="fullscreenMusicButton"></div>
                         </div>
-                        <div class="window__title">Music</div>
+                        <div class="window__title" id="musicHeader">Music</div>
                     </div>
                     <div class="window__bottom">
                         <div class="window__content window__content--blank">
