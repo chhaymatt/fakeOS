@@ -1,7 +1,8 @@
 // DATE AND TIME
 const timeDisplay = document.getElementById("timeDisplay");
-
-const time = () => {
+let this12 = true;
+const time = (display12) => {
+    
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const hours = ["12", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"];
@@ -14,7 +15,7 @@ const time = () => {
     const m = String(d.getMinutes()).padStart(2,0); // 0-59
     let h = String(d.getHours()); // 0-23
 
-    let display12 = true;
+    //let display12 = false;
     let displayYear = false;
     let displayFullDay = false;
     let displayFullMonth = false;
@@ -44,11 +45,11 @@ const time = () => {
         ampm = "";
     }
 
-    timeDisplay.innerHTML = `${dayFull} ${dayNumber} ${month} ${year} ${h}:${m}:${s} ${ampm}`;
+    timeDisplay.innerHTML = `${display12} ${dayFull} ${dayNumber} ${month} ${year} ${h}:${m}:${s} ${ampm}`;
  
 };
 
-setInterval(time, 1000); // Refresh time every 1000 miliseconds (1 second)
+setInterval(time(this12), 1000); // Refresh time every 1000 miliseconds (1 second)
 
 // MENU BAR
 const appleButton = document.getElementById("appleButton");
