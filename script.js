@@ -1,17 +1,84 @@
 // DATE AND TIME
 const timeDisplay = document.getElementById("timeDisplay");
-// let this12 = true;
-const time = (display12 = true, displayFullDay = false, displayFullMonth = false, displayYear = true) => {
+
+// TIME MENU & CLICKS
+const hourButton = document.getElementById("hourButton");
+const dayFullButton = document.getElementById("dayFullButton");
+const monthFullButton = document.getElementById("monthFullButton");
+const yearButton = document.getElementById("yearButton");
+const secondsButton = document.getElementById("secondsButton");
+
+let display12 = true;
+let displayFullDay = true;
+let displayFullMonth = true;
+let displayYear = true;
+let displaySeconds = false;
+
+const closeTimeMenu = () => {
+    menu[4].classList.toggle("hidden");
+    timeDisplay.classList.toggle("highlight");
+};
+
+const toggleHour = () => {
+    closeTimeMenu();
+    display12 = !display12;
+    let text = display12 ? "Show 24-hour time" : "Show 12-hour time";
+    hourButton.innerText = text;
+};
+
+const toggleDayFull = () => {
+    closeTimeMenu();
+    displayFullDay= !displayFullDay;
+    let text = displayFullDay ? "Show full day" : "Hide full day";
+    dayFullButton.innerText = text;
+};
+
+const toggleMonthFull = () => {
+    closeTimeMenu();
+    displayFullMonth = !displayFullMonth;
+    let text = displayFullMonth ? "Show full month" : "Hide full month";
+    monthFullButton.innerText = text;
+};
+
+const toggleYear = () => {
+    closeTimeMenu();
+    displayYear = !displayYear;
+    let text = displayYear ? "Hide year" : "Show year";
+    yearButton.innerText = text;
+};
+
+const toggleSeconds = () => {
+    closeTimeMenu();
+    displaySeconds = !displaySeconds;
+    let text = displaySeconds ? "Hide seconds" : "Show seconds";
+    secondsButton.innerText = text;
+};
+
+hourButton.addEventListener("click",toggleHour);
+dayFullButton.addEventListener("click",toggleDayFull);
+monthFullButton.addEventListener("click",toggleMonthFull);
+yearButton.addEventListener("click",toggleYear);
+secondsButton.addEventListener("click",toggleSeconds);
+
+/**
+ * This funciton displays the current date and time
+ * @param {boolean} display12           Show 12 hour time   e.g. 9:41 am
+ * @param {boolean} displayFullDay      Show full day,      e.g. Tuesday
+ * @param {boolean} displayFullMonth    Show full month,    e.g. October
+ * @param {boolean} displayYear         Show year,          e.g. 2022
+ */
+const time = (display12, displayFullDay, displayFullMonth, displayYear, displaySeconds) => {
     
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const hours = ["12", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"];
+
     const d = new Date();
     let year = d.getFullYear();
     let month = months[d.getMonth()];
     const dayNumber = d.getDate(); // th of month
     let dayFull = days[d.getDay()]; // Monday, Tuesday etc.
-    const s = String(d.getSeconds()).padStart(2,0); // 00-59
+    let s = String(d.getSeconds()).padStart(2,0); // 00-59
     const m = String(d.getMinutes()).padStart(2,0); // 00-59
     let h = String(d.getHours()); // 0-23
     let ampm; // am or pm
@@ -27,24 +94,28 @@ const time = (display12 = true, displayFullDay = false, displayFullMonth = false
     };
 
     // Hide year
-    if(!displayYear) {
+    if (!displayYear) {
         year = "";
-    }
+    };
 
-    // Show 24 houur time
-    if(display12) {
+    // Show 24 hour time
+    if (display12) {
         ampm = h < 12 ? "am" : "pm";
-        h = hours[h]
-        
+        h = hours[h];
+
     } else {
         ampm = "";
-    }
+    };
 
-    timeDisplay.innerHTML = `${dayFull} ${dayNumber} ${month} ${year} ${h}:${m}:${s} ${ampm}`;
- 
+    // Hide seconds & write to HTML
+    if (!displaySeconds) {
+        timeDisplay.innerHTML = `${dayFull} ${dayNumber} ${month} ${year} ${h}:${m} ${ampm}`;
+    } else {
+        timeDisplay.innerHTML = `${dayFull} ${dayNumber} ${month} ${year} ${h}:${m}:${s} ${ampm}`;
+    }
 };
 
-setInterval(() => time(), 1000); // Refresh time every 1000 miliseconds (1 second)
+setInterval(() => time(display12, displayFullDay, displayFullMonth, displayYear, displaySeconds), 1000); // Refresh time every 1000 miliseconds (1 second)
 
 // MENU BAR
 const appleButton = document.getElementById("appleButton");
@@ -76,18 +147,12 @@ const toggleTimeMenu = () => {
     timeDisplay.classList.toggle("highlight");
 };
 
-
 // MENU CLICK
 appleButton.addEventListener("click",toggleAppleMenu);
 titleButton.addEventListener("click",toggleTitleMenu);
 fileButton.addEventListener("click",toggleFileMenu);
 editButton.addEventListener("click",toggleEditMenu);
 timeDisplay.addEventListener("click",toggleTimeMenu);
-
-
-// TIME MENU & CLICKS
-const hourButton = document.getElementById("hourButton");
-// hourButton.addEventListener("click",toggleHour);
 
 ///  APPS
 const finderButton = document.getElementById("finderButton");

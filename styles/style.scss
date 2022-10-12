@@ -7,7 +7,7 @@
 
 body {
     background-image: url(./images/desktop-background-1.png);
-    background-size: cover;
+    background-size: auto;
     overflow: hidden;
 }
 
@@ -34,7 +34,7 @@ body {
         padding: 1rem;
         display: flex;
         flex-direction: column;
-        
+
         p {
             font-size: 0.8rem;
             margin-bottom: 1rem;
@@ -86,9 +86,15 @@ body {
         
     }
 }
-
-.dropdown {
+.dropdown-area {
     display: flex;
+    justify-content: space-between;
+}
+.dropdown {
+    &--left {
+        display: flex;
+        flex-direction: row;
+    }
 
     &__group {
         background-color:  rgba(255, 255, 255, 0.5);
@@ -98,6 +104,11 @@ body {
         border-right: 1px solid black;
         border-bottom: 1px solid black;
         backdrop-filter: blur(20px);
+
+        &--right {
+            border-left: 1px solid black;
+            border-right: 0px;
+        }
     }
 
     &__button {
@@ -189,7 +200,6 @@ body {
     }
 
     &__group {
-        height: 50vh;
         width: 50vh;
         background-color: rgba(255, 255, 255, 0.75);
         border: 1px solid black;
@@ -257,11 +267,12 @@ body {
 .sidebar {
     background-color: rgba(255, 255, 255, 0.5);
     border-right: 1px solid black;
-    border-bottom: 1px solid black;
     padding: 0.5rem;
+    padding-bottom: 1rem;
     display: flex;
     flex-direction: column;
     width: 20rem;
+    height: 100%;
 
     &__label {
         font-size: 0.8rem;
@@ -331,7 +342,6 @@ main {
 }
 
 .fullscreen {
-    height: 75vh;
     width: 100%;
 }
 

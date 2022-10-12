@@ -26,66 +26,71 @@
                 <div class="menu__button" id="timeDisplay"></div>
             </div>
         </div>
-        <div class="dropdown">
-
-            <!-- Apple Menu -->
-            <div class="dropdown__group hidden">
-                <div class="dropdown__button dropdown__button--border">About This Mac</div>
-                <div class="dropdown__button">System Settings...</div>
-                <div class="dropdown__button dropdown__button--border">App Store...</div>
-                <div class="dropdown__button dropdown__button--border">Recent Items<i class="fa-solid fa-greater-than"></i></div>
-                <div class="dropdown__button dropdown__button--border">Force Quit</div>
-                <div class="dropdown__button">Sleep</div>
-                <div class="dropdown__button">Restart...</div>
-                <div class="dropdown__button dropdown__button--border">Shut Down...</div>
-                <div class="dropdown__button">Lock Screen...</div>
-                <div class="dropdown__button">Log Out...</div>
+        <div class="dropdown-area">
+            <div class="dropdown--left">
+                <!-- Apple Menu -->
+                <div class="dropdown__group hidden">
+                    <div class="dropdown__button dropdown__button--border">About This Mac</div>
+                    <div class="dropdown__button">System Settings...</div>
+                    <div class="dropdown__button dropdown__button--border">App Store...</div>
+                    <div class="dropdown__button dropdown__button--border">Recent Items<i class="fa-solid fa-greater-than"></i></div>
+                    <div class="dropdown__button dropdown__button--border">Force Quit</div>
+                    <div class="dropdown__button">Sleep</div>
+                    <div class="dropdown__button">Restart...</div>
+                    <div class="dropdown__button dropdown__button--border">Shut Down...</div>
+                    <div class="dropdown__button">Lock Screen...</div>
+                    <div class="dropdown__button">Log Out...</div>
+                </div>
+    
+                <!-- Title Menu -->
+                <div class="dropdown__group hidden">
+                    <div class="dropdown__button dropdown__button--border">About Finder</div>
+                    <div class="dropdown__button dropdown__button--border">Preferences...</div>
+                    <div class="dropdown__button dropdown__button--border">Empty Bin...</div>
+                    <div class="dropdown__button dropdown__button--border">Services <i class="fa-solid fa-greater-than"></i></div>
+                    <div class="dropdown__button">Hide Finder</div>
+                    <div class="dropdown__button">Hide Others</div>
+                    <div class="dropdown__button">Show All</div>
+                </div>
+    
+                <!-- File Menu -->
+                <div class="dropdown__group hidden">
+                    <div class="dropdown__button">New Finder Window</div>
+                    <div class="dropdown__button">New Folder</div>
+                    <div class="dropdown__button">New Folder with Selection</div>
+                    <div class="dropdown__button">New Smart Folder</div>
+                    <div class="dropdown__button">New Tab</div>
+                    <div class="dropdown__button">Open</div>
+                    <div class="dropdown__button">Open With</div>
+                    <div class="dropdown__button">Close Window</div>
+                </div>
+    
+                <!-- Edit Menu -->
+                <div class="dropdown__group hidden">
+                    <div class="dropdown__button">Undo</div>
+                    <div class="dropdown__button">Redo</div>
+                    <div class="dropdown__button">Cut</div>
+                    <div class="dropdown__button">Copy</div>
+                    <div class="dropdown__button">Paste</div>
+                    <div class="dropdown__button dropdown__button--border">Select All</div>
+                    <div class="dropdown__button dropdown__button--border">Show Clipboard</div>
+                    <div class="dropdown__button">Start Dictation<i class="fa-solid fa-microphone"></i></div>
+                    <div class="dropdown__button">Emoji & Symbols<i class="fa-solid fa-globe"></i></div>
+                </div>
+    
+    
+    
             </div>
-
-            <!-- Title Menu -->
-            <div class="dropdown__group hidden">
-                <div class="dropdown__button dropdown__button--border">About Finder</div>
-                <div class="dropdown__button dropdown__button--border">Preferences...</div>
-                <div class="dropdown__button dropdown__button--border">Empty Bin...</div>
-                <div class="dropdown__button dropdown__button--border">Services <i class="fa-solid fa-greater-than"></i></div>
-                <div class="dropdown__button">Hide Finder</div>
-                <div class="dropdown__button">Hide Others</div>
-                <div class="dropdown__button">Show All</div>
+            <div class="dropdown dropdown--right">
+                <!-- Time Menu -->
+                <div class="dropdown__group dropdown__group--right hidden">
+                    <div class="dropdown__button" id="hourButton">Show 24-hour time</div>
+                    <div class="dropdown__button" id="secondsButton">Hide seconds</div>
+                    <div class="dropdown__button" id="dayFullButton">Show full day</div>
+                    <div class="dropdown__button" id="monthFullButton">Show full month</div>
+                    <div class="dropdown__button" id="yearButton">Hide year</div>
+                </div>
             </div>
-
-            <!-- File Menu -->
-            <div class="dropdown__group hidden">
-                <div class="dropdown__button">New Finder Window</div>
-                <div class="dropdown__button">New Folder</div>
-                <div class="dropdown__button">New Folder with Selection</div>
-                <div class="dropdown__button">New Smart Folder</div>
-                <div class="dropdown__button">New Tab</div>
-                <div class="dropdown__button">Open</div>
-                <div class="dropdown__button">Open With</div>
-                <div class="dropdown__button">Close Window</div>
-            </div>
-
-            <!-- Edit Menu -->
-            <div class="dropdown__group hidden">
-                <div class="dropdown__button">Undo</div>
-                <div class="dropdown__button">Redo</div>
-                <div class="dropdown__button">Cut</div>
-                <div class="dropdown__button">Copy</div>
-                <div class="dropdown__button">Paste</div>
-                <div class="dropdown__button dropdown__button--border">Select All</div>
-                <div class="dropdown__button dropdown__button--border">Show Clipboard</div>
-                <div class="dropdown__button">Start Dictation<i class="fa-solid fa-microphone"></i></div>
-                <div class="dropdown__button">Emoji & Symbols<i class="fa-solid fa-globe"></i></div>
-            </div>
-
-            <!-- Time Menu -->
-            <div class="dropdown__group hidden">
-                <div class="dropdown__button" id="hourButton">Show 24-hour time</div>
-                <div class="dropdown__button" id="dayFullButton">Show full day</div>
-                <div class="dropdown__button" id="monthFullButton">Show full month</div>
-                <div class="dropdown__button" id="yearButton">Hide year</div>
-            </div>
-
         </div>
         
     </header>
