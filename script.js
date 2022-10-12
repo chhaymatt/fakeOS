@@ -1,7 +1,6 @@
-// DATE AND TIME
+/// DATE AND TIME MODULE
+// Date and time buttons
 const timeDisplay = document.getElementById("timeDisplay");
-
-// TIME MENU & CLICKS
 const hourButton = document.getElementById("hourButton");
 const dayFullButton = document.getElementById("dayFullButton");
 const monthFullButton = document.getElementById("monthFullButton");
@@ -9,6 +8,7 @@ const yearButton = document.getElementById("yearButton");
 const secondsButton = document.getElementById("secondsButton");
 const ampmButton = document.getElementById("ampmButton");
 
+// Initial time settings on page load
 let display12 = true;
 let displayFullDay = true;
 let displayFullMonth = true;
@@ -16,10 +16,12 @@ let displayYear = true;
 let displaySeconds = true;
 let displayAmpm = true;
 
+// Toggle time menu dropdown after click
 const closeTimeMenu = () => {
     menu[4].classList.toggle("hidden");
 };
 
+// Toggle 12 hour or 24 hour time setting
 const toggleHour = () => {
     closeTimeMenu();
     display12 = !display12;
@@ -27,6 +29,7 @@ const toggleHour = () => {
     hourButton.innerText = text;
 };
 
+// Toggle full day length setting
 const toggleDayFull = () => {
     closeTimeMenu();
     displayFullDay= !displayFullDay;
@@ -34,6 +37,7 @@ const toggleDayFull = () => {
     dayFullButton.innerText = text;
 };
 
+// Toggle full month length setting
 const toggleMonthFull = () => {
     closeTimeMenu();
     displayFullMonth = !displayFullMonth;
@@ -41,6 +45,7 @@ const toggleMonthFull = () => {
     monthFullButton.innerText = text;
 };
 
+// Toggle year setting
 const toggleYear = () => {
     closeTimeMenu();
     displayYear = !displayYear;
@@ -48,6 +53,7 @@ const toggleYear = () => {
     yearButton.innerText = text;
 };
 
+// Toggle settings setting
 const toggleSeconds = () => {
     closeTimeMenu();
     displaySeconds = !displaySeconds;
@@ -55,6 +61,7 @@ const toggleSeconds = () => {
     secondsButton.innerText = text;
 };
 
+// Toggle am/pm setting
 const toggleAmpm = () => {
     closeTimeMenu();
     displayAmpm = !displayAmpm;
@@ -62,6 +69,7 @@ const toggleAmpm = () => {
     ampmButton.innerText = text;
 };
 
+// Time setting click to handler
 hourButton.addEventListener("click",toggleHour);
 dayFullButton.addEventListener("click",toggleDayFull);
 monthFullButton.addEventListener("click",toggleMonthFull);
@@ -70,11 +78,13 @@ secondsButton.addEventListener("click",toggleSeconds);
 ampmButton.addEventListener("click",toggleAmpm);
 
 /**
- * This funciton displays the current date and time
+ * This function displays the current date and time based on user settings
  * @param {boolean} display12           Show 12 hour time   e.g. 9:41 am
  * @param {boolean} displayFullDay      Show full day,      e.g. Tuesday
  * @param {boolean} displayFullMonth    Show full month,    e.g. October
  * @param {boolean} displayYear         Show year,          e.g. 2022
+ * @param {boolean} displaySeconds      Show seconds        e.g. 9:41:59 am
+ * @param {boolean} displayAmpm         Show am/pm          e.g. 9:41:59 am
  */
 const time = (display12, displayFullDay, displayFullMonth, displayYear, displaySeconds) => {
     
@@ -111,11 +121,11 @@ const time = (display12, displayFullDay, displayFullMonth, displayYear, displayS
     if (display12) {
         ampm = h < 12 ? "am" : "pm";
         h = hours[h];
-
     } else {
         ampm = "";
     };
 
+    // Hide am/pm
     if (!displayAmpm) {
         ampm = "";
     };
@@ -128,21 +138,20 @@ const time = (display12, displayFullDay, displayFullMonth, displayYear, displayS
     };
 };
 
-setInterval(() => time(display12, displayFullDay, displayFullMonth, displayYear, displaySeconds, displayAmpm), 1000); // Refresh time every 1000 miliseconds (1 second)
+ // Refresh HTML time display every 1000 miliseconds (1 second)
+setInterval(() => time(display12, displayFullDay, displayFullMonth, displayYear, displaySeconds, displayAmpm), 1000);
 
-// MENU BAR
+/// MENU
+// Menu buttons and dropdown groups
 const appleButton = document.getElementById("appleButton");
 const titleButton = document.getElementById("titleButton");
 const fileButton = document.getElementById("fileButton");
 const editButton = document.getElementById("editButton");
-
 const menu = document.getElementsByClassName("dropdown__group");
 
-// MENU HANDLERS
+// Menu handlers for each menu dropdown
 const toggleAppleMenu = () => {
     menu[0].classList.toggle("hidden");
-    
-    // Close other menus
     menu[1].classList.add("hidden");
     menu[2].classList.add("hidden");
     menu[3].classList.add("hidden");
@@ -151,8 +160,6 @@ const toggleAppleMenu = () => {
 };
 const toggleTitleMenu = () => {
     menu[1].classList.toggle("hidden");
-
-    // Close other menus
     menu[0].classList.add("hidden");
     menu[2].classList.add("hidden");
     menu[3].classList.add("hidden");
@@ -160,8 +167,6 @@ const toggleTitleMenu = () => {
 };
 const toggleFileMenu = () => {
     menu[2].classList.toggle("hidden");
-
-    // Close other menus
     menu[0].classList.add("hidden");
     menu[1].classList.add("hidden");
     menu[3].classList.add("hidden");
@@ -169,8 +174,6 @@ const toggleFileMenu = () => {
 };
 const toggleEditMenu = () => {
     menu[3].classList.toggle("hidden");
-
-    // Close other menus
     menu[0].classList.add("hidden");
     menu[1].classList.add("hidden");
     menu[2].classList.add("hidden");
@@ -178,8 +181,6 @@ const toggleEditMenu = () => {
 };
 const toggleTimeMenu = () => {
     menu[4].classList.toggle("hidden");
-
-    // Close other menus
     menu[0].classList.add("hidden");
     menu[1].classList.add("hidden");
     menu[2].classList.add("hidden");
@@ -187,14 +188,31 @@ const toggleTimeMenu = () => {
 
 };
 
-// MENU CLICK
+// Menu click to handler
 appleButton.addEventListener("click",toggleAppleMenu);
 titleButton.addEventListener("click",toggleTitleMenu);
 fileButton.addEventListener("click",toggleFileMenu);
 editButton.addEventListener("click",toggleEditMenu);
 timeDisplay.addEventListener("click",toggleTimeMenu);
 
+// About popup buttons and popup window
+const pop = document.getElementsByClassName("popup");
+const aboutPopupButton = document.getElementById("aboutPopupButton");
+const closeAboutPopup = document.getElementById("closeAboutPopup");
+
+// About popup handler
+const toggleAboutPopup = () => {
+    menu[0].classList.add("hidden");
+    appleButton.classList.remove("highlight");
+    pop[0].classList.toggle("hidden");
+}
+
+// About click to handler
+aboutPopupButton.addEventListener("click",toggleAboutPopup);
+closeAboutPopup.addEventListener("click",toggleAboutPopup);
+
 ///  APPS
+// App specific open or close/minimise or fullscreen buttons, and window groups
 const finderButton = document.getElementById("finderButton");
 const closeFinderButton = document.getElementById("closeFinderButton");
 const minimiseFinderButton = document.getElementById("minimiseFinderButton");
@@ -207,9 +225,13 @@ const musicButton = document.getElementById("musicButton");
 const closeMusicButton = document.getElementById("closeMusicButton");
 const minimiseMusicButton = document.getElementById("minimiseMusicButton");
 
+const fullscreenFinderButton = document.getElementById("fullscreenFinderButton");
+const fullscreenWeatherButton = document.getElementById("fullscreenWeatherButton");
+const fullscreenMusicButton = document.getElementById("fullscreenMusicButton");
+
 const app = document.getElementsByClassName("window__group");
 
-// Open and close apps
+// App handlers for opening or closing an app
 const toggleFinderApp = () => {
     app[0].classList.toggle("hidden")
     app[0].classList.remove("fullscreen");
@@ -237,6 +259,7 @@ const toggleMusicApp = () => {
     musicButton.classList.toggle("highlight");
 };
 
+// App click to handler for open/minimise/closing an app
 finderButton.addEventListener("click",toggleFinderApp);
 closeFinderButton.addEventListener("click",toggleFinderApp);
 minimiseFinderButton.addEventListener("click",toggleFinderApp);
@@ -249,52 +272,34 @@ musicButton.addEventListener("click",toggleMusicApp);
 closeMusicButton.addEventListener("click",toggleMusicApp);
 minimiseMusicButton.addEventListener("click",toggleMusicApp);
 
-// Fullscreen apps
+// App handlers for fullscreening an app
 const toggleFullscreenFinderApp = () => {
     app[0].classList.toggle("fullscreen");
-    // Set position to be top left corner
     app[0].style.top = 3.5 + "rem";
     app[0].style.left = 0 + "rem";
 }
 
 const toggleFullscreenWeatherApp = () => {
     app[1].classList.toggle("fullscreen");
-    // Set position to be top left corner
     app[1].style.top = 3.5 + "rem";
     app[1].style.left = 0 + "rem";
 }
 
 const toggleFullscreenMusicApp = () => {
     app[2].classList.toggle("fullscreen");
-    // Set position to be top left corner
     app[2].style.top = 3.5 + "rem";
     app[2].style.left = 0 + "rem";
 }
 
-
-const fullscreenFinderButton = document.getElementById("fullscreenFinderButton");
-const fullscreenWeatherButton = document.getElementById("fullscreenWeatherButton");
-const fullscreenMusicButton = document.getElementById("fullscreenMusicButton");
+// App click to handler for fullscreening an app
 fullscreenFinderButton.addEventListener("click",toggleFullscreenFinderApp);
 fullscreenWeatherButton.addEventListener("click",toggleFullscreenWeatherApp);
 fullscreenMusicButton.addEventListener("click",toggleFullscreenMusicApp);
 
-
-// About This Mac Popup
-const pop = document.getElementsByClassName("popup");
-const aboutPopupButton = document.getElementById("aboutPopupButton");
-const closeAboutPopup = document.getElementById("closeAboutPopup");
-
-const toggleAboutPopup = () => {
-    menu[0].classList.add("hidden");
-    appleButton.classList.remove("highlight");
-    pop[0].classList.toggle("hidden");
-}
-
-aboutPopupButton.addEventListener("click",toggleAboutPopup);
-closeAboutPopup.addEventListener("click",toggleAboutPopup);
-
+/// DRAGGABLE MODULE
 // Source: https://www.w3schools.com/howto/howto_js_draggable.asp
+
+// Draggable handler
 const dragElement = (elmnt) => {
     let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
     
@@ -331,6 +336,7 @@ const dragElement = (elmnt) => {
     document.getElementById(elmnt.id + "Header").onmousedown = dragMouseDown;
 }
 
+// App element to handler
 dragElement(document.getElementById("finder"));
 dragElement(document.getElementById("weather"));
 dragElement(document.getElementById("music"));
