@@ -1,7 +1,7 @@
 // DATE AND TIME
 const timeDisplay = document.getElementById("timeDisplay");
 // let this12 = true;
-const time = () => {
+const time = (display12 = true, displayFullDay = false, displayFullMonth = false, displayYear = true) => {
     
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -11,14 +11,9 @@ const time = () => {
     let month = months[d.getMonth()];
     const dayNumber = d.getDate(); // th of month
     let dayFull = days[d.getDay()]; // Monday, Tuesday etc.
-    const s = String(d.getSeconds()).padStart(2,0); // 0-59
-    const m = String(d.getMinutes()).padStart(2,0); // 0-59
+    const s = String(d.getSeconds()).padStart(2,0); // 00-59
+    const m = String(d.getMinutes()).padStart(2,0); // 00-59
     let h = String(d.getHours()); // 0-23
-
-    let display12 = true;
-    let displayYear = false;
-    let displayFullDay = false;
-    let displayFullMonth = false;
     let ampm; // am or pm
 
     // Shorten full day - e.g. Tue
@@ -49,7 +44,7 @@ const time = () => {
  
 };
 
-setInterval(time, 1000); // Refresh time every 1000 miliseconds (1 second)
+setInterval(() => time(), 1000); // Refresh time every 1000 miliseconds (1 second)
 
 // MENU BAR
 const appleButton = document.getElementById("appleButton");
@@ -187,7 +182,7 @@ dragElement(document.getElementById("weather"));
 dragElement(document.getElementById("music"));
 
 function dragElement(elmnt) {
-  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
   if (document.getElementById(elmnt.id + "Header")) {
     // if present, the header is where you move the DIV from:
     document.getElementById(elmnt.id + "Header").onmousedown = dragMouseDown;

@@ -6,7 +6,7 @@
 }
 
 body {
-  background-image: url(/styles/images/desktop-background-1.png);
+  background-image: url(./images/desktop-background-1.png);
   background-size: cover;
   overflow: hidden;
 }
@@ -107,6 +107,7 @@ body {
   width: 100%;
   display: flex;
   justify-content: center;
+  z-index: 999;
 }
 .dock__group {
   background-color: rgba(255, 255, 255, 0.5);
