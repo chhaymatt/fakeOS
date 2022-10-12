@@ -240,6 +240,20 @@ fullscreenWeatherButton.addEventListener("click",toggleFullscreenWeatherApp);
 fullscreenMusicButton.addEventListener("click",toggleFullscreenMusicApp);
 
 
+// About This Mac Popup
+const pop = document.getElementsByClassName("popup");
+const aboutPopupButton = document.getElementById("aboutPopupButton");
+const closeAboutPopup = document.getElementById("closeAboutPopup");
+
+const toggleAboutPopup = () => {
+    pop[0].classList.toggle("hidden");
+}
+
+aboutPopupButton.addEventListener("click",toggleAboutPopup);
+closeAboutPopup.addEventListener("click",toggleAboutPopup);
+
+
+
 // Source: https://www.w3schools.com/howto/howto_js_draggable.asp
 // Make the DIV element draggable:
 dragElement(document.getElementById("finder"));

@@ -11,12 +11,12 @@ body {
     overflow: hidden;
 }
 
-.shutdown {
+.popup {
     position: absolute;
     top: 10vh;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     width: 20%;
     background-color: rgba(255, 255, 255, 0.5);
     border: 1px solid black;
@@ -34,6 +34,7 @@ body {
         padding: 1rem;
         display: flex;
         flex-direction: column;
+        width: 100%;
 
         p {
             font-size: 0.8rem;
@@ -174,36 +175,30 @@ body {
 
 
 .window {
-    margin-top: 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: nowrap;
     background-size: auto;
     background-repeat: no-repeat;
-
     
     &__title {
         text-align: center;
         width: 100%;
         font-weight: bold;
-        margin-top: 0.3rem;
     }
 
     &__top {
         display: flex;
+        align-items: center;
         border-bottom: 1px solid black;
         padding: 0.5rem;
         background-color: rgba(255, 255, 255, 0.5);
-        
     }
 
     &__group {
-        width: 50vh;
         background-color: rgba(255, 255, 255, 0.75);
         border: 1px solid black;
         backdrop-filter: blur(10px);
         box-shadow: 8.0px 16.0px 16.0px hsl(0deg 0% 0% / 0.25);
+        overflow: hidden;
+
     }
     
     &__buttons {
@@ -243,21 +238,11 @@ body {
             }
         }
     }
-    
-    &__subheading {
-        margin-bottom: 0.5rem;
-        width: 100%;
-    }
 
     &__content {
         display: flex;
         flex-direction: row;
-
-        &--blank {
-            display: flex;
-            flex-direction: column;
-            padding: 1rem;
-        }
+        height: 100%;
     }
 
 
@@ -265,13 +250,11 @@ body {
 
 .sidebar {
     background-color: rgba(255, 255, 255, 0.5);
-    border-right: 1px solid black;
     padding: 0.5rem;
-    padding-bottom: 1rem;
     display: flex;
     flex-direction: column;
+    border-right: 1px solid black;
     width: 20rem;
-    height: 100%;
 
     &__label {
         font-size: 0.8rem;
@@ -343,7 +326,7 @@ main {
 
 .fullscreen {
     width: 100%;
-    height: 75vh;
+    height: 80vh;
 }
 
 // JS draggable content

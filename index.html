@@ -30,14 +30,14 @@
             <div class="dropdown--left">
                 <!-- Apple Menu -->
                 <div class="dropdown__group hidden">
-                    <div class="dropdown__button dropdown__button--border">About This Mac</div>
+                    <div class="dropdown__button dropdown__button--border" id="aboutPopupButton">About This Mac</div>
                     <div class="dropdown__button">System Settings...</div>
                     <div class="dropdown__button dropdown__button--border">App Store...</div>
                     <div class="dropdown__button dropdown__button--border">Recent Items<i class="fa-solid fa-greater-than"></i></div>
                     <div class="dropdown__button dropdown__button--border">Force Quit</div>
                     <div class="dropdown__button">Sleep</div>
                     <div class="dropdown__button">Restart...</div>
-                    <div class="dropdown__button dropdown__button--border">Shut Down...</div>
+                    <div class="dropdown__button dropdown__button--border" id="shutdownPopupButton">Shut Down...</div>
                     <div class="dropdown__button">Lock Screen...</div>
                     <div class="dropdown__button">Log Out...</div>
                 </div>
@@ -96,17 +96,16 @@
     </header>
 
     <main>
-        <!-- Shutdown Window -->
-        <div class="shutdown hidden" id="shutdown">
-            <div class="shutdown__left">
-                <i class="fa-solid fa-power-off"></i>
+        <!-- About This Mac Window -->
+        <div class="popup hidden" id="aboutPopup">
+            <div class="popup__left">
+                <i class="fa-solid fa-code"></i>
             </div>
-            <div class="shutdown__right">
-                <h5>Are you sure you want to shut down your computer now?</h5>
-                <p>If you do nothing, the computer will shut down automatically in 10 seconds.</p>
-                <div class="shutdown__buttons">
-                    <button>Shut Down</button>
-                    <button>Cancel</button>
+            <div class="popup__right">
+                <h4>Matthew Chhay</h4>
+                <p>Created using HTML, SCSS and JS</p>
+                <div class="popup__buttons">
+                    <button id="closeAboutPopup">Close</button>
                 </div>
             </div>
         </div>
@@ -123,49 +122,48 @@
                         </div>
                         <div class="window__title" id="finderHeader">Finder</div>
                     </div>
-                    <div class="window__bottom">
-                        <div class="window__content">
-                            <div class="sidebar">
-                                <div class="sidebar__label">Favourites</div>
-                                <div class="sidebar__group">
-                                    <i class="fa-brands fa-app-store-ios"></i>
-                                    <p>App Store</p>
-                                </div>
-                                <div class="sidebar__group darklight">
-                                    <i class="fa-regular fa-window-maximize"></i>
-                                    <p>Desktop</p>
-                                </div>
-                                <div class="sidebar__group">
-                                    <i class="fa-solid fa-circle-arrow-down"></i>
-                                    <p>Downloads</p>
-                                </div>
-                                <div class="sidebar__group">
-                                    <i class="fa-solid fa-folder"></i>
-                                    <p>MC</p>
-                                </div>
-                                <div class="sidebar__label">iCloud</div>
-                                <div class="sidebar__group">
-                                    <i class="fa-solid fa-cloud"></i>
-                                    <p>iCloud Drive</p>
-                                </div>
-                                <div class="sidebar__group">
-                                    <i class="fa-solid fa-file"></i>
-                                    <p>Documents</p>
-                                </div>
-                                <div class="sidebar__group">
-                                    <i class="fa-regular fa-window-maximize"></i>
-                                    <p>Desktop</p>
-                                </div>
-                                <div class="sidebar__group">
-                                    <i class="fa-solid fa-user-group"></i>
-                                    <p>Shared</p>
-                                </div>
+                    <div class="window__content">
+                        <div class="sidebar">
+                            <div class="sidebar__label">Favourites</div>
+                            <div class="sidebar__group">
+                                <i class="fa-brands fa-app-store-ios"></i>
+                                <p>App Store</p>
                             </div>
-                            <div class="right">
-                                <p>This directory is blank</p>
+                            <div class="sidebar__group darklight">
+                                <i class="fa-regular fa-window-maximize"></i>
+                                <p>Desktop</p>
+                            </div>
+                            <div class="sidebar__group">
+                                <i class="fa-solid fa-circle-arrow-down"></i>
+                                <p>Downloads</p>
+                            </div>
+                            <div class="sidebar__group">
+                                <i class="fa-solid fa-folder"></i>
+                                <p>MC</p>
+                            </div>
+                            <div class="sidebar__label">iCloud</div>
+                            <div class="sidebar__group">
+                                <i class="fa-solid fa-cloud"></i>
+                                <p>iCloud Drive</p>
+                            </div>
+                            <div class="sidebar__group">
+                                <i class="fa-solid fa-file"></i>
+                                <p>Documents</p>
+                            </div>
+                            <div class="sidebar__group">
+                                <i class="fa-regular fa-window-maximize"></i>
+                                <p>Desktop</p>
+                            </div>
+                            <div class="sidebar__group">
+                                <i class="fa-solid fa-user-group"></i>
+                                <p>Shared</p>
                             </div>
                         </div>
+                        <div class="right">
+                            <p>This directory is blank</p>
+                        </div>
                     </div>
+                
                 </div>
             </div>
             <div class="window">
@@ -178,51 +176,49 @@
                         </div>
                         <div class="window__title" id="weatherHeader">Weather</div>
                     </div>
-                    <div class="window__bottom">
-                        <div class="window__content">
-                            <div class="sidebar">
-                                <div class="sidebar__label">Current Location</div>
-                                <div class="sidebar__group darklight">
-                                    <i class="fa-solid fa-cloud-sun-rain"></i>
-                                    <p>Adelaide</p>
-                                </div>
-                                <div class="sidebar__label">Australia</div>
-                                <div class="sidebar__group ">
-                                    <i class="fa-solid fa-cloud-sun-rain"></i>
-                                    <p>Adelaide</p>
-                                </div>
-                                <div class="sidebar__group">
-                                    <i class="fa-solid fa-hurricane"></i>
-                                    <p>Brisbane</p>
-                                </div>
-                                <div class="sidebar__group">
-                                    <i class="fa-solid fa-cloud-showers-heavy"></i>
-                                    <p>Canberra</p>
-                                </div>
-                                <div class="sidebar__group">
-                                    <i class="fa-solid fa-sun"></i>
-                                    <p>Darwin</p>
-                                </div>
-                                <div class="sidebar__group">
-                                    <i class="fa-regular fa-snowflake"></i>
-                                    <p>Hobart</p>
-                                </div>
-                                <div class="sidebar__group">
-                                    <i class="fa-solid fa-wind"></i>
-                                    <p>Melbourne</p>
-                                </div>
-                                <div class="sidebar__group">
-                                    <i class="fa-solid fa-sun"></i>
-                                    <p>Perth</p>
-                                </div>
-                                <div class="sidebar__group">
-                                    <i class="fa-solid fa-cloud-sun"></i>
-                                    <p>Sydney</p>
-                                </div>
+                    <div class="window__content">
+                        <div class="sidebar">
+                            <div class="sidebar__label">Current Location</div>
+                            <div class="sidebar__group darklight">
+                                <i class="fa-solid fa-cloud-sun-rain"></i>
+                                <p>Adelaide</p>
                             </div>
-                            <div class="right">
-                                <p>Visit bom.gov.au for more information</p>
+                            <div class="sidebar__label">Australia</div>
+                            <div class="sidebar__group ">
+                                <i class="fa-solid fa-cloud-sun-rain"></i>
+                                <p>Adelaide</p>
                             </div>
+                            <div class="sidebar__group">
+                                <i class="fa-solid fa-hurricane"></i>
+                                <p>Brisbane</p>
+                            </div>
+                            <div class="sidebar__group">
+                                <i class="fa-solid fa-cloud-showers-heavy"></i>
+                                <p>Canberra</p>
+                            </div>
+                            <div class="sidebar__group">
+                                <i class="fa-solid fa-sun"></i>
+                                <p>Darwin</p>
+                            </div>
+                            <div class="sidebar__group">
+                                <i class="fa-regular fa-snowflake"></i>
+                                <p>Hobart</p>
+                            </div>
+                            <div class="sidebar__group">
+                                <i class="fa-solid fa-wind"></i>
+                                <p>Melbourne</p>
+                            </div>
+                            <div class="sidebar__group">
+                                <i class="fa-solid fa-sun"></i>
+                                <p>Perth</p>
+                            </div>
+                            <div class="sidebar__group">
+                                <i class="fa-solid fa-cloud-sun"></i>
+                                <p>Sydney</p>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <p>Visit bom.gov.au for more information</p>
                         </div>
                     </div>
                 </div>
@@ -237,56 +233,54 @@
                         </div>
                         <div class="window__title" id="musicHeader">Music</div>
                     </div>
-                    <div class="window__bottom">
-                        <div class="window__content">
-                            <div class="sidebar">
-                                <div class="sidebar__label">Music</div>
-                                <div class="sidebar__group">
-                                    <i class="fa-solid fa-circle-play"></i>
-                                    <p>Listen Now</p>
-                                </div>
-                                <div class="sidebar__group darklight">
-                                    <i class="fa-solid fa-table-cells-large"></i>
-                                    <p>Browse</p>
-                                </div>
-                                <div class="sidebar__group">
-                                    <i class="fa-solid fa-tower-broadcast"></i>
-                                    <p>Radio</p>
-                                </div>
-                                <div class="sidebar__label">Library</div>
-                                <div class="sidebar__group">
-                                    <i class="fa-solid fa-clock"></i>
-                                    <p>Recently Added</p>
-                                </div>
-                                <div class="sidebar__group">
-                                    <i class="fa-solid fa-microphone"></i>
-                                    <p>Artists</p>
-                                </div>
-                                <div class="sidebar__group">
-                                    <i class="fa-solid fa-record-vinyl"></i>
-                                    <p>Albums</p>
-                                </div>
-                                <div class="sidebar__group">
-                                    <i class="fa-solid fa-music"></i>
-                                    <p>Songs</p>
-                                </div>
-                                <div class="sidebar__group">
-                                    <i class="fa-solid fa-video"></i>
-                                    <p>Music Videos</p>
-                                </div>
-                                <div class="sidebar__label">Playlists</div>
-                                <div class="sidebar__group">
-                                    <i class="fa-solid fa-layer-group"></i>
-                                    <p>2022</p>
-                                </div>
-                                <div class="sidebar__group">
-                                    <i class="fa-solid fa-layer-group"></i>
-                                    <p>2021</p>
-                                </div>
+                    <div class="window__content">
+                        <div class="sidebar">
+                            <div class="sidebar__label">Music</div>
+                            <div class="sidebar__group">
+                                <i class="fa-solid fa-circle-play"></i>
+                                <p>Listen Now</p>
                             </div>
-                            <div class="right">
-                                <p>Unable to load music library</p>
+                            <div class="sidebar__group darklight">
+                                <i class="fa-solid fa-table-cells-large"></i>
+                                <p>Browse</p>
                             </div>
+                            <div class="sidebar__group">
+                                <i class="fa-solid fa-tower-broadcast"></i>
+                                <p>Radio</p>
+                            </div>
+                            <div class="sidebar__label">Library</div>
+                            <div class="sidebar__group">
+                                <i class="fa-solid fa-clock"></i>
+                                <p>Recently Added</p>
+                            </div>
+                            <div class="sidebar__group">
+                                <i class="fa-solid fa-microphone"></i>
+                                <p>Artists</p>
+                            </div>
+                            <div class="sidebar__group">
+                                <i class="fa-solid fa-record-vinyl"></i>
+                                <p>Albums</p>
+                            </div>
+                            <div class="sidebar__group">
+                                <i class="fa-solid fa-music"></i>
+                                <p>Songs</p>
+                            </div>
+                            <div class="sidebar__group">
+                                <i class="fa-solid fa-video"></i>
+                                <p>Music Videos</p>
+                            </div>
+                            <div class="sidebar__label">Playlists</div>
+                            <div class="sidebar__group">
+                                <i class="fa-solid fa-layer-group"></i>
+                                <p>2022</p>
+                            </div>
+                            <div class="sidebar__group">
+                                <i class="fa-solid fa-layer-group"></i>
+                                <p>2021</p>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <p>Unable to load music library</p>
                         </div>
                     </div>
                 </div>
