@@ -7,12 +7,14 @@ const dayFullButton = document.getElementById("dayFullButton");
 const monthFullButton = document.getElementById("monthFullButton");
 const yearButton = document.getElementById("yearButton");
 const secondsButton = document.getElementById("secondsButton");
+const ampmButton = document.getElementById("ampmButton");
 
 let display12 = true;
 let displayFullDay = true;
 let displayFullMonth = true;
 let displayYear = true;
-let displaySeconds = false;
+let displaySeconds = true;
+let displayAmpm = true;
 
 const closeTimeMenu = () => {
     menu[4].classList.toggle("hidden");
@@ -53,11 +55,19 @@ const toggleSeconds = () => {
     secondsButton.innerText = text;
 };
 
+const toggleAmpm = () => {
+    closeTimeMenu();
+    displayAmpm = !displayAmpm;
+    let text = displayAmpm ? "Hide am/pm" : "Show am/pm";
+    ampmButton.innerText = text;
+};
+
 hourButton.addEventListener("click",toggleHour);
 dayFullButton.addEventListener("click",toggleDayFull);
 monthFullButton.addEventListener("click",toggleMonthFull);
 yearButton.addEventListener("click",toggleYear);
 secondsButton.addEventListener("click",toggleSeconds);
+ampmButton.addEventListener("click",toggleAmpm);
 
 /**
  * This funciton displays the current date and time
@@ -106,15 +116,19 @@ const time = (display12, displayFullDay, displayFullMonth, displayYear, displayS
         ampm = "";
     };
 
+    if (!displayAmpm) {
+        ampm = "";
+    };
+
     // Hide seconds & write to HTML
     if (!displaySeconds) {
         timeDisplay.innerHTML = `${dayFull} ${dayNumber} ${month} ${year} ${h}:${m} ${ampm}`;
     } else {
         timeDisplay.innerHTML = `${dayFull} ${dayNumber} ${month} ${year} ${h}:${m}:${s} ${ampm}`;
-    }
+    };
 };
 
-setInterval(() => time(display12, displayFullDay, displayFullMonth, displayYear, displaySeconds), 1000); // Refresh time every 1000 miliseconds (1 second)
+setInterval(() => time(display12, displayFullDay, displayFullMonth, displayYear, displaySeconds, displayAmpm), 1000); // Refresh time every 1000 miliseconds (1 second)
 
 // MENU BAR
 const appleButton = document.getElementById("appleButton");
@@ -283,9 +297,8 @@ closeAboutPopup.addEventListener("click",toggleAboutPopup);
 // Source: https://www.w3schools.com/howto/howto_js_draggable.asp
 const dragElement = (elmnt) => {
     let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-    document.getElementById(elmnt.id + "Header").onmousedown = dragMouseDown;
-
-    function dragMouseDown(e) {
+    
+    const dragMouseDown = (e) => {
         e = e || window.event;
         e.preventDefault();
         // get the mouse cursor position at startup:
@@ -314,6 +327,8 @@ const dragElement = (elmnt) => {
         document.onmouseup = null;
         document.onmousemove = null;
     }
+
+    document.getElementById(elmnt.id + "Header").onmousedown = dragMouseDown;
 }
 
 dragElement(document.getElementById("finder"));

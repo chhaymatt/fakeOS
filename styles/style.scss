@@ -3,12 +3,20 @@
     padding: 0;
     font-family: Arial;
     user-select: none;
+    color: #212427
 }
 
 body {
     background-image: url(./images/desktop-background-1.png);
     background-size: auto;
     overflow: hidden;
+}
+
+// Required for popups
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .popup {
@@ -19,8 +27,9 @@ body {
     justify-content: space-between;
     width: 20%;
     background-color: rgba(255, 255, 255, 0.5);
-    border: 1px solid black;
+    border: 1px solid #212427;
     padding: 1rem;
+    backdrop-filter: blur(20px);
     z-index: 999;
 
     &__left {
@@ -34,6 +43,7 @@ body {
         padding: 1rem;
         display: flex;
         flex-direction: column;
+        justify-content: center;
         width: 100%;
 
         p {
@@ -66,7 +76,7 @@ body {
     background-color: rgba(255, 255, 255, 0.5);
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #212427;
 
     &__group {
         display: flex;
@@ -101,12 +111,12 @@ body {
         display: flex;
         flex-direction: column;
         padding: 0.5rem;
-        border-right: 1px solid black;
-        border-bottom: 1px solid black;
+        border-right: 1px solid #212427;
+        border-bottom: 1px solid #212427;
         backdrop-filter: blur(20px);
 
         &--right {
-            border-left: 1px solid black;
+            border-left: 1px solid #212427;
             border-right: 0px;
         }
     }
@@ -144,7 +154,7 @@ body {
 
     &__group {
         background-color: rgba(255, 255, 255, 0.5);
-        border: 1px solid black;
+        border: 1px solid #212427;
         display: flex;
 
         justify-content: space-around;
@@ -187,14 +197,14 @@ body {
     &__top {
         display: flex;
         align-items: center;
-        border-bottom: 1px solid black;
+        border-bottom: 1px solid #212427;
         padding: 0.5rem;
         background-color: rgba(255, 255, 255, 0.5);
     }
 
     &__group {
         background-color: rgba(255, 255, 255, 0.75);
-        border: 1px solid black;
+        border: 1px solid #212427;;
         backdrop-filter: blur(10px);
         box-shadow: 8.0px 16.0px 16.0px hsl(0deg 0% 0% / 0.25);
         overflow: hidden;
@@ -253,7 +263,7 @@ body {
     padding: 0.5rem;
     display: flex;
     flex-direction: column;
-    border-right: 1px solid black;
+    border-right: 1px solid #212427;
     width: 20rem;
 
     &__label {
@@ -303,13 +313,7 @@ header {
     top: 0;
 }
 
-main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 // JS modal toggles
-
 .hidden {
     display: none;
 }
@@ -329,13 +333,14 @@ main {
     height: 80vh;
 }
 
-// JS draggable content
+// JS draggable apps
 #finder, #weather, #music {
     top: 3.5rem;
     position: absolute;
     z-index: 9;
 }
 
+// JS draggable apps initial load
 #finder {
     left: 1rem;
 }
