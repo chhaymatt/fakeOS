@@ -33,7 +33,7 @@ const toggleHour = () => {
 const toggleDayFull = () => {
     closeTimeMenu();
     displayFullDay= !displayFullDay;
-    let text = displayFullDay ? "Show full day" : "Hide full day";
+    let text = displayFullDay ? "Hide full day" : "Show full day";
     dayFullButton.innerText = text;
 };
 
@@ -41,7 +41,7 @@ const toggleDayFull = () => {
 const toggleMonthFull = () => {
     closeTimeMenu();
     displayFullMonth = !displayFullMonth;
-    let text = displayFullMonth ? "Show full month" : "Hide full month";
+    let text = displayFullMonth ? "Hide full month" : "Show full month";
     monthFullButton.innerText = text;
 };
 
