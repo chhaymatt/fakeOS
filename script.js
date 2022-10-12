@@ -303,8 +303,18 @@ fullscreenMusicButton.addEventListener("click",toggleFullscreenMusicApp);
 // Draggable handler
 const dragElement = (elmnt) => {
     let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-    
+
     const dragMouseDown = (e) => {
+        // Reset zIndex of all apps to 0
+        finderElement.style.zIndex = 0;
+        weatherElement.style.zIndex = 0;
+        musicElement.style.zIndex = 0;
+
+        // Increase dragged element ZIndex by 1
+        let zIndex = elmnt.style.zIndex;
+        zIndex++;
+        elmnt.style.zIndex = zIndex;
+
         e = e || window.event;
         e.preventDefault();
         // get the mouse cursor position at startup:
@@ -337,7 +347,11 @@ const dragElement = (elmnt) => {
     document.getElementById(elmnt.id + "Header").onmousedown = dragMouseDown;
 }
 
+const finderElement = document.getElementById("finder");
+const weatherElement = document.getElementById("weather");
+const musicElement = document.getElementById("music");
+
 // App element to handler
-dragElement(document.getElementById("finder"));
-dragElement(document.getElementById("weather"));
-dragElement(document.getElementById("music"));
+dragElement(finderElement);
+dragElement(weatherElement);
+dragElement(musicElement);
