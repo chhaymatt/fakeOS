@@ -27,6 +27,7 @@ const toggleHour = () => {
     display12 = !display12;
     let text = display12 ? "Show 24-hour time" : "Show 12-hour time";
     hourButton.innerText = text;
+    ampmButton.classList.toggle("hidden");
 };
 
 // Toggle full day length setting
