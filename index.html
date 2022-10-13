@@ -1,357 +1,423 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles/style.css">
-    <script defer src="script.js"></script>
-    
-    <!-- Font Awesome -->
-    <script src="https://kit.fontawesome.com/c3aaf1830b.js" crossorigin="anonymous"></script>
-    
-    <!-- Favicon using https://favicon.io/favicon-generator/ -->
-    <link rel="apple-touch-icon" sizes="180x180" href="./styles/images/favicons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./styles/images/favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./styles/images/favicons/favicon-16x16.png">
-    <link rel="manifest" href="./styles/images/favicons/site.webmanifest">
-
-    <!-- Meta Tags -->
-    <title>Matthew Chhay | fakeOS</title>
-    <meta name="title" content="Matthew Chhay | fakeOS">
-    <meta name="description" content="Replicating the layout and format of the Mac operating system using HTML, SCSS and controlling interactive elements with JS">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://chhaymatt.github.io/fakeOS/">
-    <meta property="og:title" content="Matthew Chhay | fakeOS">
-    <meta property="og:description" content="Replicating the layout and format of the Mac operating system using HTML, SCSS and controlling interactive elements with JS">
-    <meta property="og:image" content="https://i.imgur.com/q50wJeP.png">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://chhaymatt.github.io/fakeOS/">
-    <meta property="twitter:title" content="Matthew Chhay | fakeOS">
-    <meta property="twitter:description" content="Replicating the layout and format of the Mac operating system using HTML, SCSS and controlling interactive elements with JS">
-    <meta property="twitter:image" content="https://i.imgur.com/q50wJeP.png">
-</head>
-<body>
-    <header>
-        <!-- Menu bar-->
-        <div class="menu">
-            <div class="menu__group">
-                <div class="menu__button menu__button" id="appleButton"><i class="fa-brands fa-apple"></i></div>
-                <div class="menu__button" id="titleButton">Finder</div>
-                <div class="menu__button" id="fileButton">File</div>
-                <div class="menu__button" id="editButton">Edit</div>
-            </div>
-            <div class="menu__group">
-                <div class="menu__button" id="timeDisplay"></div>
-            </div>
-        </div>
-        <div class="dropdown-area">
-            <div class="dropdown--left">
-                <!-- Apple Menu -->
-                <div class="dropdown__group hidden" id="appleMenu">
-                    <div class="dropdown__button dropdown__button--border" id="aboutPopupButton">About This Mac</div>
-                    <div class="dropdown__button disabled">System Settings...</div>
-                    <div class="dropdown__button dropdown__button--border disabled">App Store...</div>
-                    <div class="dropdown__button dropdown__button--border disabled">Recent Items<p class="dropdown__button--shortcut">＞</p></div>
-                    <div class="dropdown__button dropdown__button--border disabled">Force Quit<p class="dropdown__button--shortcut">⌥ ⌘ ⎋</p></div>
-                    <div class="dropdown__button disabled">Sleep</div>
-                    <div class="dropdown__button disabled">Restart...</div>
-                    <div class="dropdown__button dropdown__button--border" id="shutdownPopupButton">Shut Down...</div>
-                    <div class="dropdown__button disabled">Lock Screen...<p class="dropdown__button--shortcut">⌃ ⌘ Q</p></div>
-                    <div class="dropdown__button disabled">Log Out...<p class="dropdown__button--shortcut">⇧ ⌘ Q</p></div>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./styles/style.css">
+        <script defer src="script.js"></script>
+        <!-- Font Awesome -->
+        <script src="https://kit.fontawesome.com/c3aaf1830b.js" crossorigin="anonymous"></script>
+        <!-- Favicon using https://favicon.io/favicon-generator/ -->
+        <link rel="apple-touch-icon" sizes="180x180" href="./styles/images/favicons/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="./styles/images/favicons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="./styles/images/favicons/favicon-16x16.png">
+        <link rel="manifest" href="./styles/images/favicons/site.webmanifest">
+        <!-- Meta Tags -->
+        <title>Matthew Chhay | fakeOS</title>
+        <meta name="title" content="Matthew Chhay | fakeOS">
+        <meta name="description" content="Replicating the layout and format of the Mac operating system using HTML, SCSS and controlling interactive elements with JS">
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://chhaymatt.github.io/fakeOS/">
+        <meta property="og:title" content="Matthew Chhay | fakeOS">
+        <meta property="og:description" content="Replicating the layout and format of the Mac operating system using HTML, SCSS and controlling interactive elements with JS">
+        <meta property="og:image" content="https://i.imgur.com/q50wJeP.png">
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image">
+        <meta property="twitter:url" content="https://chhaymatt.github.io/fakeOS/">
+        <meta property="twitter:title" content="Matthew Chhay | fakeOS">
+        <meta property="twitter:description" content="Replicating the layout and format of the Mac operating system using HTML, SCSS and controlling interactive elements with JS">
+        <meta property="twitter:image" content="https://i.imgur.com/q50wJeP.png">
+    </head>
+    <body>
+        <header>
+            <!-- Menu bar-->
+            <div class="menu">
+                <div class="menu__group">
+                    <div class="menu__button menu__button" id="appleButton"><i class="fa-brands fa-apple"></i></div>
+                    <div class="menu__button" id="titleButton">Finder</div>
+                    <div class="menu__button" id="fileButton">File</div>
+                    <div class="menu__button" id="editButton">Edit</div>
                 </div>
-    
-                <!-- Title Menu -->
-                <div class="dropdown__group hidden" id="titleMenu">
-                    <div class="dropdown__button dropdown__button--border disabled">About Finder</div>
-                    <div class="dropdown__button dropdown__button--border disabled">Preferences...<p class="dropdown__button--shortcut">⌘ ,</p></div>
-                    <div class="dropdown__button dropdown__button--border disabled">Empty Bin...<p class="dropdown__button--shortcut">⇧ ⌘ ⌫</p></div>
-                    <div class="dropdown__button dropdown__button--border disabled">Services<p class="dropdown__button--shortcut">＞</p></div>
-                    <div class="dropdown__button disabled">Hide Finder<p class="dropdown__button--shortcut">⌘ H</p></div>
-                    <div class="dropdown__button disabled">Hide Others<p class="dropdown__button--shortcut">⌥ ⌘ H</p></div>
-                    <div class="dropdown__button disabled">Show All</div>
-                </div>
-    
-                <!-- File Menu -->
-                <div class="dropdown__group hidden" id="fileMenu">
-                    <div class="dropdown__button disabled">New Finder Window<p class="dropdown__button--shortcut">⌘ N</p></div>
-                    <div class="dropdown__button disabled">New Folder<p class="dropdown__button--shortcut">⇧ ⌘ N</p></div>
-                    <div class="dropdown__button disabled">New Folder with Selection<p class="dropdown__button--shortcut">⌃ ⌘ N</p></div>
-                    <div class="dropdown__button disabled">New Smart Folder</div>
-                    <div class="dropdown__button disabled">New Tab<p class="dropdown__button--shortcut">⌘ T</p></div>
-                    <div class="dropdown__button disabled">Open<p class="dropdown__button--shortcut">⌘ O</p></div>
-                    <div class="dropdown__button disabled">Open With<p class="dropdown__button--shortcut">⌘ ＞</p></div>
-                    <div class="dropdown__button dropdown__button--border disabled">Close Window<p class="dropdown__button--shortcut">⌘ W</p></div>
-                    <div class="dropdown__button disabled">Get Info<p class="dropdown__button--shortcut">⌘ I</p></div>
-                    <div class="dropdown__button disabled">Rename</div>
-                    <div class="dropdown__button disabled">Compress</div>
-                    <div class="dropdown__button disabled">Duplicate<p class="dropdown__button--shortcut">⌘ D</p></div>
-                    <div class="dropdown__button disabled">Make Alias<p class="dropdown__button--shortcut">⌃ ⌘ A</p></div>
-                    <div class="dropdown__button disabled">Quick Look<p class="dropdown__button--shortcut">⌘ Y</p></div>
-                    <div class="dropdown__button disabled">Print<p class="dropdown__button--shortcut">⌘ P</p></div>
-                </div>
-    
-                <!-- Edit Menu -->
-                <div class="dropdown__group hidden" id="editMenu">
-                    <div class="dropdown__button disabled">Undo<p class="dropdown__button--shortcut">⌘ Z</p></div>
-                    <div class="dropdown__button disabled">Redo<p class="dropdown__button--shortcut">⇧ ⌘ Z</p></div>
-                    <div class="dropdown__button disabled">Cut<p class="dropdown__button--shortcut">⌘ X</p></div>
-                    <div class="dropdown__button disabled">Copy<p class="dropdown__button--shortcut">⌘ C</p></div>
-                    <div class="dropdown__button disabled">Paste<p class="dropdown__button--shortcut">⌘ V</p></div>
-                    <div class="dropdown__button dropdown__button--border disabled">Select All<p class="dropdown__button--shortcut">⌘ A</p></div>
-                    <div class="dropdown__button dropdown__button--border disabled">Show Clipboard</div>
-                    <div class="dropdown__button disabled">Start Dictation<i class="fa-solid fa-microphone"></i></div>
-                    <div class="dropdown__button disabled">Emoji & Symbols<i class="fa-solid fa-globe"></i></div>
-                </div>
-    
-            </div>
-            <div class="dropdown dropdown--right">
-                <!-- Time Menu -->
-                <div class="dropdown__group dropdown__group--right hidden" id="timeMenu">
-                    <div class="dropdown__button" id="hourButton">Show 24-hour time</div>
-                    <div class="dropdown__button" id="secondsButton">Hide seconds</div>
-                    <div class="dropdown__button" id="ampmButton">Hide am/pm</div>
-                    <div class="dropdown__button" id="dayFullButton">Hide full day</div>
-                    <div class="dropdown__button" id="monthFullButton">Hide full month</div>
-                    <div class="dropdown__button" id="yearButton">Hide year</div>
+                <div class="menu__group">
+                    <div class="menu__button" id="timeDisplay"></div>
                 </div>
             </div>
-        </div>
-        
-    </header>
-
-    <main>
-        <!-- About This Mac Window -->
-        <div class="popup hidden" id="aboutPopup">
-            <div class="popup__left">
-                <i class="fa-solid fa-code"></i>
-            </div>
-            <div class="popup__right">
-                <h4>Matthew Chhay</h4>
-                <br>
-                <p>Created using HTML, SCSS and JS</p>
-                <div class="popup__buttons">
-                    <button id="closeAboutPopup">Close</button>
+            <div class="dropdown-area">
+                <div class="dropdown--left">
+                    <!-- Apple Menu -->
+                    <div class="dropdown__group hidden" id="appleMenu">
+                        <div class="dropdown__button dropdown__button--border" id="aboutPopupButton">About This Mac</div>
+                        <div class="dropdown__button disabled">System Settings...</div>
+                        <div class="dropdown__button dropdown__button--border disabled">App Store...</div>
+                        <div class="dropdown__button dropdown__button--border disabled">
+                            Recent Items
+                            <p class="dropdown__button--shortcut">＞</p>
+                        </div>
+                        <div class="dropdown__button dropdown__button--border disabled">
+                            Force Quit
+                            <p class="dropdown__button--shortcut">⌥ ⌘ ⎋</p>
+                        </div>
+                        <div class="dropdown__button disabled">Sleep</div>
+                        <div class="dropdown__button disabled">Restart...</div>
+                        <div class="dropdown__button dropdown__button--border" id="shutdownPopupButton">Shut Down...</div>
+                        <div class="dropdown__button disabled">
+                            Lock Screen...
+                            <p class="dropdown__button--shortcut">⌃ ⌘ Q</p>
+                        </div>
+                        <div class="dropdown__button disabled">
+                            Log Out...
+                            <p class="dropdown__button--shortcut">⇧ ⌘ Q</p>
+                        </div>
+                    </div>
+                    <!-- Title Menu -->
+                    <div class="dropdown__group hidden" id="titleMenu">
+                        <div class="dropdown__button dropdown__button--border disabled">About Finder</div>
+                        <div class="dropdown__button dropdown__button--border disabled">
+                            Preferences...
+                            <p class="dropdown__button--shortcut">⌘ ,</p>
+                        </div>
+                        <div class="dropdown__button dropdown__button--border disabled">
+                            Empty Bin...
+                            <p class="dropdown__button--shortcut">⇧ ⌘ ⌫</p>
+                        </div>
+                        <div class="dropdown__button dropdown__button--border disabled">
+                            Services
+                            <p class="dropdown__button--shortcut">＞</p>
+                        </div>
+                        <div class="dropdown__button disabled">
+                            Hide Finder
+                            <p class="dropdown__button--shortcut">⌘ H</p>
+                        </div>
+                        <div class="dropdown__button disabled">
+                            Hide Others
+                            <p class="dropdown__button--shortcut">⌥ ⌘ H</p>
+                        </div>
+                        <div class="dropdown__button disabled">Show All</div>
+                    </div>
+                    <!-- File Menu -->
+                    <div class="dropdown__group hidden" id="fileMenu">
+                        <div class="dropdown__button disabled">
+                            New Finder Window
+                            <p class="dropdown__button--shortcut">⌘ N</p>
+                        </div>
+                        <div class="dropdown__button disabled">
+                            New Folder
+                            <p class="dropdown__button--shortcut">⇧ ⌘ N</p>
+                        </div>
+                        <div class="dropdown__button disabled">
+                            New Folder with Selection
+                            <p class="dropdown__button--shortcut">⌃ ⌘ N</p>
+                        </div>
+                        <div class="dropdown__button disabled">New Smart Folder</div>
+                        <div class="dropdown__button disabled">
+                            New Tab
+                            <p class="dropdown__button--shortcut">⌘ T</p>
+                        </div>
+                        <div class="dropdown__button disabled">
+                            Open
+                            <p class="dropdown__button--shortcut">⌘ O</p>
+                        </div>
+                        <div class="dropdown__button disabled">
+                            Open With
+                            <p class="dropdown__button--shortcut">⌘ ＞</p>
+                        </div>
+                        <div class="dropdown__button dropdown__button--border disabled">
+                            Close Window
+                            <p class="dropdown__button--shortcut">⌘ W</p>
+                        </div>
+                        <div class="dropdown__button disabled">
+                            Get Info
+                            <p class="dropdown__button--shortcut">⌘ I</p>
+                        </div>
+                        <div class="dropdown__button disabled">Rename</div>
+                        <div class="dropdown__button disabled">Compress</div>
+                        <div class="dropdown__button disabled">
+                            Duplicate
+                            <p class="dropdown__button--shortcut">⌘ D</p>
+                        </div>
+                        <div class="dropdown__button disabled">
+                            Make Alias
+                            <p class="dropdown__button--shortcut">⌃ ⌘ A</p>
+                        </div>
+                        <div class="dropdown__button disabled">
+                            Quick Look
+                            <p class="dropdown__button--shortcut">⌘ Y</p>
+                        </div>
+                        <div class="dropdown__button disabled">
+                            Print
+                            <p class="dropdown__button--shortcut">⌘ P</p>
+                        </div>
+                    </div>
+                    <!-- Edit Menu -->
+                    <div class="dropdown__group hidden" id="editMenu">
+                        <div class="dropdown__button disabled">
+                            Undo
+                            <p class="dropdown__button--shortcut">⌘ Z</p>
+                        </div>
+                        <div class="dropdown__button disabled">
+                            Redo
+                            <p class="dropdown__button--shortcut">⇧ ⌘ Z</p>
+                        </div>
+                        <div class="dropdown__button disabled">
+                            Cut
+                            <p class="dropdown__button--shortcut">⌘ X</p>
+                        </div>
+                        <div class="dropdown__button disabled">
+                            Copy
+                            <p class="dropdown__button--shortcut">⌘ C</p>
+                        </div>
+                        <div class="dropdown__button disabled">
+                            Paste
+                            <p class="dropdown__button--shortcut">⌘ V</p>
+                        </div>
+                        <div class="dropdown__button dropdown__button--border disabled">
+                            Select All
+                            <p class="dropdown__button--shortcut">⌘ A</p>
+                        </div>
+                        <div class="dropdown__button dropdown__button--border disabled">Show Clipboard</div>
+                        <div class="dropdown__button disabled">Start Dictation<i class="fa-solid fa-microphone"></i></div>
+                        <div class="dropdown__button disabled">Emoji & Symbols<i class="fa-solid fa-globe"></i></div>
+                    </div>
+                </div>
+                <div class="dropdown dropdown--right">
+                    <!-- Time Menu -->
+                    <div class="dropdown__group dropdown__group--right hidden" id="timeMenu">
+                        <div class="dropdown__button" id="hourButton">Show 24-hour time</div>
+                        <div class="dropdown__button" id="secondsButton">Hide seconds</div>
+                        <div class="dropdown__button" id="ampmButton">Hide am/pm</div>
+                        <div class="dropdown__button" id="dayFullButton">Hide full day</div>
+                        <div class="dropdown__button" id="monthFullButton">Hide full month</div>
+                        <div class="dropdown__button" id="yearButton">Hide year</div>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <!-- Shut down Window -->
-        <div class="popup hidden" id="shutdownPopup">
-            <div class="popup__left">
-                <i class="fa-solid fa-power-off"></i>
-            </div>
-            <div class="popup__right">
-                <h4>Are you sure you want to shut down your computer now?</h4>
-                <br>
-                <p>If you do nothing, the computer will shut down automatically.</p>
-                <div class="popup__buttons">
-                    <button class="button__accept" id="startShutdownPopupButton">Shut Down</button>
-                    <button id="closeShutdownPopupButton">Close</button>
+        </header>
+        <main>
+            <!-- About This Mac Window -->
+            <div class="popup hidden" id="aboutPopup">
+                <div class="popup__left">
+                    <i class="fa-solid fa-code"></i>
+                </div>
+                <div class="popup__right">
+                    <h4>Matthew Chhay</h4>
+                    <br>
+                    <p>Created using HTML, SCSS and JS</p>
+                    <div class="popup__buttons">
+                        <button id="closeAboutPopup">Close</button>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <!-- Windows on the screen-->
-        <div class="window">
+            <!-- Shut down Window -->
+            <div class="popup hidden" id="shutdownPopup">
+                <div class="popup__left">
+                    <i class="fa-solid fa-power-off"></i>
+                </div>
+                <div class="popup__right">
+                    <h4>Are you sure you want to shut down your computer now?</h4>
+                    <br>
+                    <p>If you do nothing, the computer will shut down automatically.</p>
+                    <div class="popup__buttons">
+                        <button class="button__accept" id="startShutdownPopupButton">Shut Down</button>
+                        <button id="closeShutdownPopupButton">Close</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Windows on the screen-->
             <div class="window">
-                <div class="window__group hidden" id="finder">
-                    <div class="window__top">
-                        <div class="window__buttons">
-                            <div class="window__button window__button--close" id="closeFinderButton"></div>
-                            <div class="window__button window__button--minimise"  id="minimiseFinderButton"></div>
-                            <div class="window__button window__button--fullscreen" id="fullscreenFinderButton"></div>
+                <div class="window">
+                    <div class="window__group hidden" id="finder">
+                        <div class="window__top">
+                            <div class="window__buttons">
+                                <div class="window__button window__button--close" id="closeFinderButton"></div>
+                                <div class="window__button window__button--minimise"  id="minimiseFinderButton"></div>
+                                <div class="window__button window__button--fullscreen" id="fullscreenFinderButton"></div>
+                            </div>
+                            <div class="window__title" id="finderHeader">Finder</div>
                         </div>
-                        <div class="window__title" id="finderHeader">Finder</div>
+                        <div class="window__content">
+                            <div class="sidebar">
+                                <div class="sidebar__label">Favourites</div>
+                                <div class="sidebar__group">
+                                    <i class="fa-brands fa-app-store-ios"></i>
+                                    <p>App Store</p>
+                                </div>
+                                <div class="sidebar__group darklight">
+                                    <i class="fa-regular fa-window-maximize"></i>
+                                    <p>Desktop</p>
+                                </div>
+                                <div class="sidebar__group">
+                                    <i class="fa-solid fa-circle-arrow-down"></i>
+                                    <p>Downloads</p>
+                                </div>
+                                <div class="sidebar__group">
+                                    <i class="fa-solid fa-folder"></i>
+                                    <p>MC</p>
+                                </div>
+                                <div class="sidebar__label">iCloud</div>
+                                <div class="sidebar__group">
+                                    <i class="fa-solid fa-cloud"></i>
+                                    <p>iCloud Drive</p>
+                                </div>
+                                <div class="sidebar__group">
+                                    <i class="fa-solid fa-file"></i>
+                                    <p>Documents</p>
+                                </div>
+                                <div class="sidebar__group">
+                                    <i class="fa-regular fa-window-maximize"></i>
+                                    <p>Desktop</p>
+                                </div>
+                                <div class="sidebar__group">
+                                    <i class="fa-solid fa-user-group"></i>
+                                    <p>Shared</p>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <p>This directory is blank</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="window__content">
-                        <div class="sidebar">
-                            <div class="sidebar__label">Favourites</div>
-                            <div class="sidebar__group">
-                                <i class="fa-brands fa-app-store-ios"></i>
-                                <p>App Store</p>
+                </div>
+                <div class="window">
+                    <div class="window__group hidden" id="weather">
+                        <div class="window__top">
+                            <div class="window__buttons">
+                                <div class="window__button window__button--close" id="closeWeatherButton"></div>
+                                <div class="window__button window__button--minimise"  id="minimiseWeatherButton"></div>
+                                <div class="window__button window__button--fullscreen" id="fullscreenWeatherButton"></div>
                             </div>
-                            <div class="sidebar__group darklight">
-                                <i class="fa-regular fa-window-maximize"></i>
-                                <p>Desktop</p>
+                            <div class="window__title" id="weatherHeader">Weather</div>
+                        </div>
+                        <div class="window__content">
+                            <div class="sidebar">
+                                <div class="sidebar__label">Current Location</div>
+                                <div class="sidebar__group darklight">
+                                    <i class="fa-solid fa-cloud-sun-rain"></i>
+                                    <p>Adelaide</p>
+                                </div>
+                                <div class="sidebar__label">Australia</div>
+                                <div class="sidebar__group ">
+                                    <i class="fa-solid fa-cloud-sun-rain"></i>
+                                    <p>Adelaide</p>
+                                </div>
+                                <div class="sidebar__group">
+                                    <i class="fa-solid fa-hurricane"></i>
+                                    <p>Brisbane</p>
+                                </div>
+                                <div class="sidebar__group">
+                                    <i class="fa-solid fa-cloud-showers-heavy"></i>
+                                    <p>Canberra</p>
+                                </div>
+                                <div class="sidebar__group">
+                                    <i class="fa-solid fa-sun"></i>
+                                    <p>Darwin</p>
+                                </div>
+                                <div class="sidebar__group">
+                                    <i class="fa-regular fa-snowflake"></i>
+                                    <p>Hobart</p>
+                                </div>
+                                <div class="sidebar__group">
+                                    <i class="fa-solid fa-wind"></i>
+                                    <p>Melbourne</p>
+                                </div>
+                                <div class="sidebar__group">
+                                    <i class="fa-solid fa-sun"></i>
+                                    <p>Perth</p>
+                                </div>
+                                <div class="sidebar__group">
+                                    <i class="fa-solid fa-cloud-sun"></i>
+                                    <p>Sydney</p>
+                                </div>
                             </div>
-                            <div class="sidebar__group">
-                                <i class="fa-solid fa-circle-arrow-down"></i>
-                                <p>Downloads</p>
-                            </div>
-                            <div class="sidebar__group">
-                                <i class="fa-solid fa-folder"></i>
-                                <p>MC</p>
-                            </div>
-                            <div class="sidebar__label">iCloud</div>
-                            <div class="sidebar__group">
-                                <i class="fa-solid fa-cloud"></i>
-                                <p>iCloud Drive</p>
-                            </div>
-                            <div class="sidebar__group">
-                                <i class="fa-solid fa-file"></i>
-                                <p>Documents</p>
-                            </div>
-                            <div class="sidebar__group">
-                                <i class="fa-regular fa-window-maximize"></i>
-                                <p>Desktop</p>
-                            </div>
-                            <div class="sidebar__group">
-                                <i class="fa-solid fa-user-group"></i>
-                                <p>Shared</p>
+                            <div class="right">
+                                <p>Visit bom.gov.au for more information</p>
                             </div>
                         </div>
-                        <div class="right">
-                            <p>This directory is blank</p>
+                    </div>
+                </div>
+                <div class="window">
+                    <div class="window__group hidden" id="music">
+                        <div class="window__top">
+                            <div class="window__buttons">
+                                <div class="window__button window__button--close" id="closeMusicButton"></div>
+                                <div class="window__button window__button--minimise"  id="minimiseMusicButton"></div>
+                                <div class="window__button window__button--fullscreen" id="fullscreenMusicButton"></div>
+                            </div>
+                            <div class="window__title" id="musicHeader">Music</div>
+                        </div>
+                        <div class="window__content">
+                            <div class="sidebar">
+                                <div class="sidebar__label">Music</div>
+                                <div class="sidebar__group">
+                                    <i class="fa-solid fa-circle-play"></i>
+                                    <p>Listen Now</p>
+                                </div>
+                                <div class="sidebar__group darklight">
+                                    <i class="fa-solid fa-table-cells-large"></i>
+                                    <p>Browse</p>
+                                </div>
+                                <div class="sidebar__group">
+                                    <i class="fa-solid fa-tower-broadcast"></i>
+                                    <p>Radio</p>
+                                </div>
+                                <div class="sidebar__label">Library</div>
+                                <div class="sidebar__group">
+                                    <i class="fa-solid fa-clock"></i>
+                                    <p>Recently Added</p>
+                                </div>
+                                <div class="sidebar__group">
+                                    <i class="fa-solid fa-microphone"></i>
+                                    <p>Artists</p>
+                                </div>
+                                <div class="sidebar__group">
+                                    <i class="fa-solid fa-record-vinyl"></i>
+                                    <p>Albums</p>
+                                </div>
+                                <div class="sidebar__group">
+                                    <i class="fa-solid fa-music"></i>
+                                    <p>Songs</p>
+                                </div>
+                                <div class="sidebar__group">
+                                    <i class="fa-solid fa-video"></i>
+                                    <p>Music Videos</p>
+                                </div>
+                                <div class="sidebar__label">Playlists</div>
+                                <div class="sidebar__group">
+                                    <i class="fa-solid fa-layer-group"></i>
+                                    <p>2022</p>
+                                </div>
+                                <div class="sidebar__group">
+                                    <i class="fa-solid fa-layer-group"></i>
+                                    <p>2021</p>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <p>Unable to load music library</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="window">
-                <div class="window__group hidden" id="weather">
-                    <div class="window__top">
-                        <div class="window__buttons">
-                            <div class="window__button window__button--close" id="closeWeatherButton"></div>
-                            <div class="window__button window__button--minimise"  id="minimiseWeatherButton"></div>
-                            <div class="window__button window__button--fullscreen" id="fullscreenWeatherButton"></div>
-                        </div>
-                        <div class="window__title" id="weatherHeader">Weather</div>
+        </main>
+        <footer>
+            <!-- Dock for apps -->
+            <div class="dock">
+                <div class="dock__group">
+                    <div class="dock__button" id="finderButton">
+                        <i class="dock__icon fa-solid fa-folder"></i>
+                        <div class="dock__text">Finder</div>
                     </div>
-                    <div class="window__content">
-                        <div class="sidebar">
-                            <div class="sidebar__label">Current Location</div>
-                            <div class="sidebar__group darklight">
-                                <i class="fa-solid fa-cloud-sun-rain"></i>
-                                <p>Adelaide</p>
-                            </div>
-                            <div class="sidebar__label">Australia</div>
-                            <div class="sidebar__group ">
-                                <i class="fa-solid fa-cloud-sun-rain"></i>
-                                <p>Adelaide</p>
-                            </div>
-                            <div class="sidebar__group">
-                                <i class="fa-solid fa-hurricane"></i>
-                                <p>Brisbane</p>
-                            </div>
-                            <div class="sidebar__group">
-                                <i class="fa-solid fa-cloud-showers-heavy"></i>
-                                <p>Canberra</p>
-                            </div>
-                            <div class="sidebar__group">
-                                <i class="fa-solid fa-sun"></i>
-                                <p>Darwin</p>
-                            </div>
-                            <div class="sidebar__group">
-                                <i class="fa-regular fa-snowflake"></i>
-                                <p>Hobart</p>
-                            </div>
-                            <div class="sidebar__group">
-                                <i class="fa-solid fa-wind"></i>
-                                <p>Melbourne</p>
-                            </div>
-                            <div class="sidebar__group">
-                                <i class="fa-solid fa-sun"></i>
-                                <p>Perth</p>
-                            </div>
-                            <div class="sidebar__group">
-                                <i class="fa-solid fa-cloud-sun"></i>
-                                <p>Sydney</p>
-                            </div>
-                        </div>
-                        <div class="right">
-                            <p>Visit bom.gov.au for more information</p>
-                        </div>
+                    <div class="dock__button" id="weatherButton">
+                        <i class="dock__icon fa-solid fa-cloud-sun"></i>
+                        <div class="dock__text">Weather</div>
+                    </div>
+                    <div class="dock__button" id="musicButton">
+                        <i class="dock__icon fa-solid fa-music" id="musicButton"></i>
+                        <div class="dock__text">Music</div>
                     </div>
                 </div>
             </div>
-            <div class="window">
-                <div class="window__group hidden" id="music">
-                    <div class="window__top">
-                        <div class="window__buttons">
-                            <div class="window__button window__button--close" id="closeMusicButton"></div>
-                            <div class="window__button window__button--minimise"  id="minimiseMusicButton"></div>
-                            <div class="window__button window__button--fullscreen" id="fullscreenMusicButton"></div>
-                        </div>
-                        <div class="window__title" id="musicHeader">Music</div>
-                    </div>
-                    <div class="window__content">
-                        <div class="sidebar">
-                            <div class="sidebar__label">Music</div>
-                            <div class="sidebar__group">
-                                <i class="fa-solid fa-circle-play"></i>
-                                <p>Listen Now</p>
-                            </div>
-                            <div class="sidebar__group darklight">
-                                <i class="fa-solid fa-table-cells-large"></i>
-                                <p>Browse</p>
-                            </div>
-                            <div class="sidebar__group">
-                                <i class="fa-solid fa-tower-broadcast"></i>
-                                <p>Radio</p>
-                            </div>
-                            <div class="sidebar__label">Library</div>
-                            <div class="sidebar__group">
-                                <i class="fa-solid fa-clock"></i>
-                                <p>Recently Added</p>
-                            </div>
-                            <div class="sidebar__group">
-                                <i class="fa-solid fa-microphone"></i>
-                                <p>Artists</p>
-                            </div>
-                            <div class="sidebar__group">
-                                <i class="fa-solid fa-record-vinyl"></i>
-                                <p>Albums</p>
-                            </div>
-                            <div class="sidebar__group">
-                                <i class="fa-solid fa-music"></i>
-                                <p>Songs</p>
-                            </div>
-                            <div class="sidebar__group">
-                                <i class="fa-solid fa-video"></i>
-                                <p>Music Videos</p>
-                            </div>
-                            <div class="sidebar__label">Playlists</div>
-                            <div class="sidebar__group">
-                                <i class="fa-solid fa-layer-group"></i>
-                                <p>2022</p>
-                            </div>
-                            <div class="sidebar__group">
-                                <i class="fa-solid fa-layer-group"></i>
-                                <p>2021</p>
-                            </div>
-                        </div>
-                        <div class="right">
-                            <p>Unable to load music library</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-
-
-    <footer>
-        <!-- Dock for apps -->
-        <div class="dock">
-            <div class="dock__group">
-                <div class="dock__button" id="finderButton">
-                    <i class="dock__icon fa-solid fa-folder"></i>
-                    <div class="dock__text">Finder</div>
-                </div>
-                <div class="dock__button" id="weatherButton">
-                    <i class="dock__icon fa-solid fa-cloud-sun"></i>
-                    <div class="dock__text">Weather</div>
-                </div>
-                <div class="dock__button" id="musicButton">
-                    <i class="dock__icon fa-solid fa-music" id="musicButton"></i>
-                    <div class="dock__text">Music</div>
-                </div>
-            </div>
-        </div>
-    </footer>
-</body>
+        </footer>
+    </body>
 </html>
