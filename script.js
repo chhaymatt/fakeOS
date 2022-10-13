@@ -255,7 +255,7 @@ const toggleOpenCloseApp = (app) => {
 
     if (app.id == "finder") {
         app.style.left = 1 + "rem";
-        appleButton.classList.toggle("highlight");
+        finderButton.classList.toggle("highlight");
         windowOnTopFinder();
     } else if (app.id == "weather") {
         app.style.left = 30 + "rem";
