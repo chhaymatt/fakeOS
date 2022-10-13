@@ -204,13 +204,27 @@ const closeAboutPopup = document.getElementById("closeAboutPopup");
 // About popup handler
 const toggleAboutPopup = () => {
     menu[0].classList.add("hidden");
-    appleButton.classList.remove("highlight");
     pop[0].classList.toggle("hidden");
 }
 
 // About click to handler
 aboutPopupButton.addEventListener("click",toggleAboutPopup);
 closeAboutPopup.addEventListener("click",toggleAboutPopup);
+
+// // Shutdown popup buttons and popup window
+// const shutdownPopupButton = document.getElementById("shutdownButton");
+// const closeShutdownPopup = document.getElementById("closeShutdownPopup");
+
+// // Shutdown popup handler
+// const toggleShutdownPopup = () => {
+//     menu[0].classList.add("hidden");
+//     pop[1].classList.toggle("hidden");
+// }
+
+// // Shutdown click to handler
+// // shutdownPopupButton.addEventListener("click",ShutDownProcess);
+// closeShutdownPopup.addEventListener("click",toggleShutdownPopup);
+
 
 ///  APPS
 // App specific open or close/minimise or fullscreen buttons, and window groups
@@ -300,15 +314,16 @@ fullscreenFinderButton.addEventListener("click",toggleFullscreenFinderApp);
 fullscreenWeatherButton.addEventListener("click",toggleFullscreenWeatherApp);
 fullscreenMusicButton.addEventListener("click",toggleFullscreenMusicApp);
 
-/// MAKE APP APPEAR ON TOP OF THE OTHER APPS
+/// MAKE APP APPEAR ON TOP OF THE OTHER APPS & Change title in menu bar
 // Finds the current Z index of each app
 const findZIndex = () => {
     return [getComputedStyle(apps[0]).zIndex, getComputedStyle(apps[1]).zIndex, getComputedStyle(apps[2]).zIndex];
 }
 
-// Set the current app at the highest z index and reduce the z index of the other apps
+// Set the current app at the highest z index and reduce the z index of the other apps, Change title in menu bar
 const windowOnTopFinder = () => {
     let index = findZIndex();
+    titleButton.innerText = "Finder";
     if(index[0] < index[1] || index[0] < index[2]) {
         apps[0].style.zIndex = apps.length;
         apps[1].style.zIndex--;
@@ -318,6 +333,7 @@ const windowOnTopFinder = () => {
 
 const windowOnTopWeather = () => {
     let index = findZIndex();
+    titleButton.innerText = "Weather";
     if (index[1] < index[0] || index[1] < index[2]) {
         apps[0].style.zIndex--;
         apps[1].style.zIndex = apps.length;
@@ -327,6 +343,7 @@ const windowOnTopWeather = () => {
 
 const windowOnTopMusic = () => {
     let index = findZIndex();
+    titleButton.innerText = "Music";
     if (index[2] < index[0] || index[2] < index[1]) {
         apps[0].style.zIndex--;
         apps[1].style.zIndex--;
