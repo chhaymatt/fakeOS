@@ -193,7 +193,7 @@ const closeAboutPopup = document.getElementById("closeAboutPopup");
 
 // About popup handler
 const toggleAboutPopup = () => {
-    menu[0].classList.add("hidden");
+    hideMenus(appleMenu);
     pop[0].classList.toggle("hidden");
 }
 
@@ -202,18 +202,19 @@ aboutPopupButton.addEventListener("click",toggleAboutPopup);
 closeAboutPopup.addEventListener("click",toggleAboutPopup);
 
 // // Shutdown popup buttons and popup window
-// const shutdownPopupButton = document.getElementById("shutdownButton");
-// const closeShutdownPopup = document.getElementById("closeShutdownPopup");
+const shutdownPopupButton = document.getElementById("shutdownPopupButton");
+const closeShutdownPopup = document.getElementById("closeShutdownPopupButton");
 
-// // Shutdown popup handler
-// const toggleShutdownPopup = () => {
-//     menu[0].classList.add("hidden");
-//     pop[1].classList.toggle("hidden");
-// }
+// Shutdown popup handler
+const toggleShutdownPopup = () => {
+    hideMenus(appleMenu);
+    pop[1].classList.toggle("hidden");
+}
 
-// // Shutdown click to handler
-// // shutdownPopupButton.addEventListener("click",ShutDownProcess);
-// closeShutdownPopup.addEventListener("click",toggleShutdownPopup);
+// Shutdown click to handler
+// shutdownPopupButton.addEventListener("click",ShutDownProcess);
+shutdownPopupButton.addEventListener("click",toggleShutdownPopup);
+closeShutdownPopupButton.addEventListener("click",toggleShutdownPopup);
 
 
 ///  APPS

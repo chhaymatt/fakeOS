@@ -60,7 +60,7 @@
                     <div class="dropdown__button dropdown__button--border disabled">Force Quit<p class="dropdown__button--shortcut">⌥ ⌘ ⎋</p></div>
                     <div class="dropdown__button disabled">Sleep</div>
                     <div class="dropdown__button disabled">Restart...</div>
-                    <div class="dropdown__button disabled dropdown__button--border" id="shutdownPopupButton">Shut Down...</div>
+                    <div class="dropdown__button dropdown__button--border" id="shutdownPopupButton">Shut Down...</div>
                     <div class="dropdown__button disabled">Lock Screen...<p class="dropdown__button--shortcut">⌃ ⌘ Q</p></div>
                     <div class="dropdown__button disabled">Log Out...<p class="dropdown__button--shortcut">⇧ ⌘ Q</p></div>
                 </div>
@@ -141,7 +141,7 @@
         </div>
 
         <!-- Shut down Window -->
-        <!-- <div class="popup" id="shutdownPopup">
+        <div class="popup hidden" id="shutdownPopup">
             <div class="popup__left">
                 <i class="fa-solid fa-power-off"></i>
             </div>
@@ -151,10 +151,10 @@
                 <p>If you do nothing, the computer will shut down automatically.</p>
                 <div class="popup__buttons">
                     <button class="button__accept" id="shutdownButton">Shut Down</button>
-                    <button id="closeShutdownPopup">Close</button>
+                    <button id="closeShutdownPopupButton">Close</button>
                 </div>
             </div>
-        </div> -->
+        </div>
 
         <!-- Windows on the screen-->
         <div class="window">
