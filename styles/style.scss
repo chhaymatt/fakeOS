@@ -333,24 +333,26 @@ header {
     height: 80vh;
 }
 
-// JS draggable apps
-#finder, #weather, #music {
-    top: 3.5rem;
-    position: absolute;
-    z-index: 9;
-}
-
 // JS draggable apps initial load
 #finder {
+    top: 3.5rem;
+    position: absolute;
     left: 1rem;
+    z-index: 1;
 }
 
 #weather {
+    top: 3.5rem;
+    position: absolute;
     left: 30rem;
+    z-index: 2;
 }
 
 #music {
+    top: 3.5rem;
+    position: absolute;
     left: 60rem;
+    z-index: 3;
 }
 
 #finderHeader, #weatherHeader, #musicHeader {

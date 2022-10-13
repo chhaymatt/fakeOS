@@ -139,7 +139,7 @@ const time = (display12, displayFullDay, displayFullMonth, displayYear, displayS
     };
 };
 
- // Refresh HTML time display every 1000 miliseconds (1 second)
+// Refresh HTML time display every 1000 miliseconds (1 second)
 setInterval(() => time(display12, displayFullDay, displayFullMonth, displayYear, displaySeconds, displayAmpm), 1000);
 
 /// MENU
@@ -220,7 +220,7 @@ const minimiseFinderButton = document.getElementById("minimiseFinderButton");
 
 const weatherButton = document.getElementById("weatherButton");
 const closeWeatherButton = document.getElementById("closeWeatherButton");
-const minimiseWeatherButton = document.getElementById("minimiseWeatherButton")
+const minimiseWeatherButton = document.getElementById("minimiseWeatherButton");
 
 const musicButton = document.getElementById("musicButton");
 const closeMusicButton = document.getElementById("closeMusicButton");
@@ -230,34 +230,37 @@ const fullscreenFinderButton = document.getElementById("fullscreenFinderButton")
 const fullscreenWeatherButton = document.getElementById("fullscreenWeatherButton");
 const fullscreenMusicButton = document.getElementById("fullscreenMusicButton");
 
-const app = document.getElementsByClassName("window__group");
+const apps = document.getElementsByClassName("window__group");
 
 // App handlers for opening or closing an app
 const toggleFinderApp = () => {
-    app[0].classList.toggle("hidden")
-    app[0].classList.remove("fullscreen");
+    apps[0].classList.toggle("hidden")
+    apps[0].classList.remove("fullscreen");
     // Set position to be left
-    app[0].style.top = 3.5 + "rem";
-    app[0].style.left = 1 + "rem";
+    apps[0].style.top = 3.5 + "rem";
+    apps[0].style.left = 1 + "rem";
     finderButton.classList.toggle("highlight");
+    windowOnTopFinder();
 };
 
 const toggleWeatherApp = () => {
-    app[1].classList.toggle("hidden")
-    app[1].classList.remove("fullscreen");
+    apps[1].classList.toggle("hidden")
+    apps[1].classList.remove("fullscreen");
     // Set position to be middle
-    app[1].style.top = 3.5 + "rem";
-    app[1].style.left = 30 + "rem";
+    apps[1].style.top = 3.5 + "rem";
+    apps[1].style.left = 30 + "rem";
     weatherButton.classList.toggle("highlight");
+    windowOnTopWeather();
 };
 
 const toggleMusicApp = () => {
-    app[2].classList.toggle("hidden")
-    app[2].classList.remove("fullscreen");
+    apps[2].classList.toggle("hidden")
+    apps[2].classList.remove("fullscreen");
     // Set position to be right
-    app[2].style.top = 3.5 + "rem";
-    app[2].style.left = 60 + "rem";
+    apps[2].style.top = 3.5 + "rem";
+    apps[2].style.left = 60 + "rem";
     musicButton.classList.toggle("highlight");
+    windowOnTopMusic();
 };
 
 // App click to handler for open/minimise/closing an app
@@ -275,27 +278,67 @@ minimiseMusicButton.addEventListener("click",toggleMusicApp);
 
 // App handlers for fullscreening an app
 const toggleFullscreenFinderApp = () => {
-    app[0].classList.toggle("fullscreen");
-    app[0].style.top = 3.5 + "rem";
-    app[0].style.left = 0 + "rem";
+    apps[0].classList.toggle("fullscreen");
+    apps[0].style.top = 3.5 + "rem";
+    apps[0].style.left = 0 + "rem";
 }
 
 const toggleFullscreenWeatherApp = () => {
-    app[1].classList.toggle("fullscreen");
-    app[1].style.top = 3.5 + "rem";
-    app[1].style.left = 0 + "rem";
+    apps[1].classList.toggle("fullscreen");
+    apps[1].style.top = 3.5 + "rem";
+    apps[1].style.left = 0 + "rem";
 }
 
 const toggleFullscreenMusicApp = () => {
-    app[2].classList.toggle("fullscreen");
-    app[2].style.top = 3.5 + "rem";
-    app[2].style.left = 0 + "rem";
+    apps[2].classList.toggle("fullscreen");
+    apps[2].style.top = 3.5 + "rem";
+    apps[2].style.left = 0 + "rem";
 }
 
 // App click to handler for fullscreening an app
 fullscreenFinderButton.addEventListener("click",toggleFullscreenFinderApp);
 fullscreenWeatherButton.addEventListener("click",toggleFullscreenWeatherApp);
 fullscreenMusicButton.addEventListener("click",toggleFullscreenMusicApp);
+
+/// MAKE APP APPEAR ON TOP OF THE OTHER APPS
+// Finds the current Z index of each app
+const findZIndex = () => {
+    return [getComputedStyle(apps[0]).zIndex, getComputedStyle(apps[1]).zIndex, getComputedStyle(apps[2]).zIndex];
+}
+
+// Set the current app at the highest z index and reduce the z index of the other apps
+const windowOnTopFinder = () => {
+    let index = findZIndex();
+    if(index[0] < index[1] || index[0] < index[2]) {
+        apps[0].style.zIndex = apps.length;
+        apps[1].style.zIndex--;
+        apps[2].style.zIndex--;
+    }
+}
+
+const windowOnTopWeather = () => {
+    let index = findZIndex();
+    if (index[1] < index[0] || index[1] < index[2]) {
+        apps[0].style.zIndex--;
+        apps[1].style.zIndex = apps.length;
+        apps[2].style.zIndex--;
+    }
+}
+
+const windowOnTopMusic = () => {
+    let index = findZIndex();
+    if (index[2] < index[0] || index[2] < index[1]) {
+        apps[0].style.zIndex--;
+        apps[1].style.zIndex--;
+        apps[2].style.zIndex = apps.length;
+    }
+}
+
+// App appear on top click to handlers
+apps[0].addEventListener("click",windowOnTopFinder);
+apps[1].addEventListener("click",windowOnTopWeather);
+apps[2].addEventListener("click",windowOnTopMusic);
+
 
 /// DRAGGABLE MODULE
 // Source: https://www.w3schools.com/howto/howto_js_draggable.asp
@@ -305,16 +348,6 @@ const dragElement = (elmnt) => {
     let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
 
     const dragMouseDown = (e) => {
-        // Reset zIndex of all apps to 0
-        finderElement.style.zIndex = 0;
-        weatherElement.style.zIndex = 0;
-        musicElement.style.zIndex = 0;
-
-        // Increase dragged element ZIndex by 1
-        let zIndex = elmnt.style.zIndex;
-        zIndex++;
-        elmnt.style.zIndex = zIndex;
-
         e = e || window.event;
         e.preventDefault();
         // get the mouse cursor position at startup:
@@ -347,11 +380,7 @@ const dragElement = (elmnt) => {
     document.getElementById(elmnt.id + "Header").onmousedown = dragMouseDown;
 }
 
-const finderElement = document.getElementById("finder");
-const weatherElement = document.getElementById("weather");
-const musicElement = document.getElementById("music");
-
 // App element to handler
-dragElement(finderElement);
-dragElement(weatherElement);
-dragElement(musicElement);
+dragElement(document.getElementById("finder"));
+dragElement(document.getElementById("weather"));
+dragElement(document.getElementById("music"));
