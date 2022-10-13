@@ -294,6 +294,16 @@ timeDisplay.addEventListener("click", () => {
 	toggleMenu(timeMenu, titleMenu, fileMenu, appleMenu, editMenu);
 });
 
+// Hides menus when clicked outside 
+// const removeDropdowns = (e) => {
+//     console.log("I'm clicked outside of the menu area");
+//     if (!menus.contains(e.target) && !dropdowns.contains(e.target)) {
+//     hideMenus(appleMenu, fileMenu, titleMenu, editMenu, timeMenu);
+//     }
+// };
+
+// document.getElementsByClassName("main").addEventListener("click", removeDropdowns);
+
 /// POPUPS
 // Popup buttons from menu dropdown
 const aboutPopupButton = document.getElementById("aboutPopupButton");
@@ -301,12 +311,8 @@ const shutdownPopupButton = document.getElementById("shutdownPopupButton");
 
 // Buttons inside a popup
 const closeAboutPopup = document.getElementById("closeAboutPopup");
-const closeShutdownPopupButton = document.getElementById(
-	"closeShutdownPopupButton"
-);
-const startShutdownPopupButton = document.getElementById(
-	"startShutdownPopupButton"
-);
+const closeShutdownPopupButton = document.getElementById("closeShutdownPopupButton");
+const startShutdownPopupButton = document.getElementById("startShutdownPopupButton");
 
 // Popup windows
 const aboutPopup = document.getElementById("aboutPopup");
@@ -338,22 +344,18 @@ startShutdownPopupButton.addEventListener("click", () =>
 // App specific open or close/minimise or fullscreen buttons, and window groups
 const finderButton = document.getElementById("finderButton");
 const closeFinderButton = document.getElementById("closeFinderButton");
-const minimiseFinderButton = document.getElementById("minimiseFinderButton");
+const minFinderButton = document.getElementById("minFinderButton");
 
 const weatherButton = document.getElementById("weatherButton");
 const closeWeatherButton = document.getElementById("closeWeatherButton");
-const minimiseWeatherButton = document.getElementById("minimiseWeatherButton");
+const minWeatherButton = document.getElementById("minWeatherButton");
 
 const musicButton = document.getElementById("musicButton");
 const closeMusicButton = document.getElementById("closeMusicButton");
-const minimiseMusicButton = document.getElementById("minimiseMusicButton");
+const minMusicButton = document.getElementById("minMusicButton");
 
-const fullscreenFinderButton = document.getElementById(
-	"fullscreenFinderButton"
-);
-const fullscreenWeatherButton = document.getElementById(
-	"fullscreenWeatherButton"
-);
+const fullscreenFinderButton = document.getElementById("fullscreenFinderButton");
+const fullscreenWeatherButton = document.getElementById("fullscreenWeatherButton");
 const fullscreenMusicButton = document.getElementById("fullscreenMusicButton");
 
 // App windows
@@ -366,7 +368,7 @@ const music = document.getElementById("music");
  * This callback function opens an app in its original position or closes it
  * @param {*} app finder, weather, music
  */
-const toggleOpenCloseApp = (app) => {
+const toggleApp = (app) => {
 	app.classList.toggle("hidden");
 	app.classList.remove("fullscreen");
 	app.style.top = 3.5 + "rem";
@@ -387,21 +389,19 @@ const toggleOpenCloseApp = (app) => {
 };
 
 // App click to handler for open/minimise/closing an app
-finderButton.addEventListener("click", () => toggleOpenCloseApp(finder));
-closeFinderButton.addEventListener("click", () => toggleOpenCloseApp(finder));
-minimiseFinderButton.addEventListener("click", () =>
-	toggleOpenCloseApp(finder)
+finderButton.addEventListener("click", () => toggleApp(finder));
+closeFinderButton.addEventListener("click", () => toggleApp(finder));
+minFinderButton.addEventListener("click", () => toggleApp(finder)
 );
 
-weatherButton.addEventListener("click", () => toggleOpenCloseApp(weather));
-closeWeatherButton.addEventListener("click", () => toggleOpenCloseApp(weather));
-minimiseWeatherButton.addEventListener("click", () =>
-	toggleOpenCloseApp(weather)
+weatherButton.addEventListener("click", () => toggleApp(weather));
+closeWeatherButton.addEventListener("click", () => toggleApp(weather));
+minWeatherButton.addEventListener("click", () => toggleApp(weather)
 );
 
-musicButton.addEventListener("click", () => toggleOpenCloseApp(music));
-closeMusicButton.addEventListener("click", () => toggleOpenCloseApp(music));
-minimiseMusicButton.addEventListener("click", () => toggleOpenCloseApp(music));
+musicButton.addEventListener("click", () => toggleApp(music));
+closeMusicButton.addEventListener("click", () => toggleApp(music));
+minMusicButton.addEventListener("click", () => toggleApp(music));
 
 /**
  * This callback function makes an app fullscreen or exit fullscreen
@@ -414,15 +414,9 @@ const toggleFullscreenApp = (app) => {
 };
 
 // App click to handler for fullscreening an app
-fullscreenFinderButton.addEventListener("click", () =>
-	toggleFullscreenApp(finder)
-);
-fullscreenWeatherButton.addEventListener("click", () =>
-	toggleFullscreenApp(weather)
-);
-fullscreenMusicButton.addEventListener("click", () =>
-	toggleFullscreenApp(music)
-);
+fullscreenFinderButton.addEventListener("click", () => toggleFullscreenApp(finder));
+fullscreenWeatherButton.addEventListener("click", () => toggleFullscreenApp(weather));
+fullscreenMusicButton.addEventListener("click", () => toggleFullscreenApp(music));
 
 /// MAKE APP APPEAR ON TOP OF THE OTHER APPS & Change title in menu bar
 // Finds the current Z index of each app
