@@ -1,6 +1,5 @@
 /// DATE AND TIME MODULE
 // Date and time buttons
-const timeDisplay = document.getElementById("timeDisplay");
 const hourButton = document.getElementById("hourButton");
 const dayFullButton = document.getElementById("dayFullButton");
 const monthFullButton = document.getElementById("monthFullButton");
@@ -16,58 +15,53 @@ let displayYear = true;
 let displaySeconds = true;
 let displayAmpm = true;
 
-// Toggle time menu dropdown after click
-const closeTimeMenu = () => {
-    menu[4].classList.toggle("hidden");
-};
-
 // Toggle 12 hour or 24 hour time setting
 const toggleHour = () => {
-    closeTimeMenu();
     display12 = !display12;
-    let text = display12 ? "Show 24-hour time" : "Show 12-hour time";
-    hourButton.innerText = text;
+    hourButton.innerText = display12 ? "Show 24-hour time" : "Show 12-hour time";
     ampmButton.classList.toggle("hidden");
+    time(display12, displayFullDay, displayFullMonth, displayYear, displaySeconds, displayAmpm)
+    hideMenus(timeMenu);
 };
 
 // Toggle full day length setting
 const toggleDayFull = () => {
-    closeTimeMenu();
     displayFullDay= !displayFullDay;
-    let text = displayFullDay ? "Hide full day" : "Show full day";
-    dayFullButton.innerText = text;
+    dayFullButton.innerText = displayFullDay ? "Hide full day" : "Show full day";
+    time(display12, displayFullDay, displayFullMonth, displayYear, displaySeconds, displayAmpm)
+    hideMenus(timeMenu);
 };
 
 // Toggle full month length setting
 const toggleMonthFull = () => {
-    closeTimeMenu();
     displayFullMonth = !displayFullMonth;
-    let text = displayFullMonth ? "Hide full month" : "Show full month";
-    monthFullButton.innerText = text;
+    monthFullButton.innerText = displayFullMonth ? "Hide full month" : "Show full month";
+    time(display12, displayFullDay, displayFullMonth, displayYear, displaySeconds, displayAmpm);
+    hideMenus(timeMenu);
 };
 
 // Toggle year setting
 const toggleYear = () => {
-    closeTimeMenu();
     displayYear = !displayYear;
-    let text = displayYear ? "Hide year" : "Show year";
-    yearButton.innerText = text;
+    yearButton.innerText = displayYear ? "Hide year" : "Show year";
+    time(display12, displayFullDay, displayFullMonth, displayYear, displaySeconds, displayAmpm);
+    hideMenus(timeMenu);
 };
 
 // Toggle settings setting
 const toggleSeconds = () => {
-    closeTimeMenu();
     displaySeconds = !displaySeconds;
-    let text = displaySeconds ? "Hide seconds" : "Show seconds";
-    secondsButton.innerText = text;
+    secondsButton.innerText = displaySeconds ? "Hide seconds" : "Show seconds";
+    time(display12, displayFullDay, displayFullMonth, displayYear, displaySeconds, displayAmpm);
+    hideMenus(timeMenu);
 };
 
 // Toggle am/pm setting
 const toggleAmpm = () => {
-    closeTimeMenu();
     displayAmpm = !displayAmpm;
-    let text = displayAmpm ? "Hide am/pm" : "Show am/pm";
-    ampmButton.innerText = text;
+    ampmButton.innerText = displayAmpm ? "Hide am/pm" : "Show am/pm";
+    time(display12, displayFullDay, displayFullMonth, displayYear, displaySeconds, displayAmpm);
+    hideMenus(timeMenu);
 };
 
 // Time setting click to handler
@@ -131,7 +125,7 @@ const time = (display12, displayFullDay, displayFullMonth, displayYear, displayS
         ampm = "";
     };
 
-    // Hide seconds & write to HTML
+    // Hide or display seconds & write to HTML
     if (!displaySeconds) {
         timeDisplay.innerHTML = `${dayFull} ${dayNumber} ${month} ${year} ${h}:${m} ${ampm}`;
     } else {
@@ -143,58 +137,54 @@ const time = (display12, displayFullDay, displayFullMonth, displayYear, displayS
 setInterval(() => time(display12, displayFullDay, displayFullMonth, displayYear, displaySeconds, displayAmpm), 1000);
 
 /// MENU
-// Menu buttons and dropdown groups
+// Menu buttons
 const appleButton = document.getElementById("appleButton");
 const titleButton = document.getElementById("titleButton");
 const fileButton = document.getElementById("fileButton");
 const editButton = document.getElementById("editButton");
-const menu = document.getElementsByClassName("dropdown__group");
+const timeDisplay = document.getElementById("timeDisplay");
 
-// Menu handlers for each menu dropdown
-const toggleAppleMenu = () => {
-    menu[0].classList.toggle("hidden");
-    menu[1].classList.add("hidden");
-    menu[2].classList.add("hidden");
-    menu[3].classList.add("hidden");
-    menu[4].classList.add("hidden");
+// Dropdown groups
+const appleMenu = document.getElementById("appleMenu");
+const titleMenu = document.getElementById("titleMenu");
+const fileMenu = document.getElementById("fileMenu");
+const editMenu = document.getElementById("editMenu");
+const timeMenu = document.getElementById("timeMenu");
 
+/**
+ * toggleMenu displays a selected menu based on user click and hides the other menus
+ * @param {*} menuToToggle Display the required menu e.g. appleMenu
+ * @param  {...any} menusToHide Spread operator captures the remaining menus and hides them e.g. fileMenu, titleMenu, etc.
+ */
+const toggleMenu = (menuToToggle, ...menusToHide) => {
+    menuToToggle.classList.toggle("hidden"); 
+    menusToHide.forEach((menu) => menu.classList.add("hidden"));
 };
-const toggleTitleMenu = () => {
-    menu[1].classList.toggle("hidden");
-    menu[0].classList.add("hidden");
-    menu[2].classList.add("hidden");
-    menu[3].classList.add("hidden");
-    menu[4].classList.add("hidden");
-};
-const toggleFileMenu = () => {
-    menu[2].classList.toggle("hidden");
-    menu[0].classList.add("hidden");
-    menu[1].classList.add("hidden");
-    menu[3].classList.add("hidden");
-    menu[4].classList.add("hidden");
-};
-const toggleEditMenu = () => {
-    menu[3].classList.toggle("hidden");
-    menu[0].classList.add("hidden");
-    menu[1].classList.add("hidden");
-    menu[2].classList.add("hidden");
-    menu[4].classList.add("hidden");
-};
-const toggleTimeMenu = () => {
-    menu[4].classList.toggle("hidden");
-    menu[0].classList.add("hidden");
-    menu[1].classList.add("hidden");
-    menu[2].classList.add("hidden");
-    menu[3].classList.add("hidden");
 
-};
+/**
+ * Hides menus - TODO: after a user clicks inside a dropdown or outside the dropdown
+ * @param  {...any} menusToHide 
+ */
+const hideMenus = (...menusToHide) => {
+    menusToHide.forEach((menu) => menu.classList.add("hidden"));
+}
 
 // Menu click to handler
-appleButton.addEventListener("click",toggleAppleMenu);
-titleButton.addEventListener("click",toggleTitleMenu);
-fileButton.addEventListener("click",toggleFileMenu);
-editButton.addEventListener("click",toggleEditMenu);
-timeDisplay.addEventListener("click",toggleTimeMenu);
+appleButton.addEventListener("click", () => {
+    toggleMenu(appleMenu, fileMenu, titleMenu, editMenu, timeMenu);
+});
+titleButton.addEventListener("click", () => {
+    toggleMenu(titleMenu, appleMenu, fileMenu, editMenu, timeMenu);
+});
+fileButton.addEventListener("click", () => {
+    toggleMenu(fileMenu, appleMenu, editMenu, titleMenu, timeMenu);
+});
+editButton.addEventListener("click", () => {
+    toggleMenu(editMenu, titleMenu, fileMenu, appleMenu, timeMenu);
+});
+timeDisplay.addEventListener("click", () => {
+    toggleMenu(timeMenu, titleMenu, fileMenu, appleMenu, editMenu);
+});
 
 // About popup buttons and popup window
 const pop = document.getElementsByClassName("popup");
