@@ -134,7 +134,7 @@ const time = (display12, displayFullDay, displayFullMonth, displayYear, displayS
 };
 
 // Refresh HTML time display every 1000 miliseconds (1 second)
-setInterval(() => time(display12, displayFullDay, displayFullMonth, displayYear, displaySeconds, displayAmpm), 1000);
+setInterval( () => time(display12, displayFullDay, displayFullMonth, displayYear, displaySeconds, displayAmpm), 1000);
 
 /// MENU
 // Menu buttons
@@ -143,6 +143,7 @@ const titleButton = document.getElementById("titleButton");
 const fileButton = document.getElementById("fileButton");
 const editButton = document.getElementById("editButton");
 const timeDisplay = document.getElementById("timeDisplay");
+const menus = document.getElementsByClassName("menu__group");;
 
 // Dropdown groups
 const appleMenu = document.getElementById("appleMenu");
@@ -150,6 +151,7 @@ const titleMenu = document.getElementById("titleMenu");
 const fileMenu = document.getElementById("fileMenu");
 const editMenu = document.getElementById("editMenu");
 const timeMenu = document.getElementById("timeMenu");
+const dropdowns = document.getElementsByClassName("dropdown__group");
 
 /**
  * toggleMenu displays a selected menu based on user click and hides the other menus
@@ -186,36 +188,37 @@ timeDisplay.addEventListener("click", () => {
     toggleMenu(timeMenu, titleMenu, fileMenu, appleMenu, editMenu);
 });
 
-// About popup buttons and popup window
-const pop = document.getElementsByClassName("popup");
+/// POPUPS
+// Popup buttons from menu dropdown
 const aboutPopupButton = document.getElementById("aboutPopupButton");
-const closeAboutPopup = document.getElementById("closeAboutPopup");
+const shutdownPopupButton = document.getElementById("shutdownPopupButton");
 
-// About popup handler
-const toggleAboutPopup = () => {
+// Buttons inside a popup
+const closeAboutPopup = document.getElementById("closeAboutPopup");
+const closeShutdownPopupButton = document.getElementById("closeShutdownPopupButton");
+const startShutdownPopupButton = document.getElementById("startShutdownPopupButton");
+
+// Popup windows
+const aboutPopup = document.getElementById("aboutPopup");
+const shutdownPopup = document.getElementById("shutdownPopup");
+
+/**
+ * This callback function opens a popup or closes it
+ * @param {*} popup aboutPopup, shutdownPopup
+ */
+const togglePopup = (popup) => {
     hideMenus(appleMenu);
-    pop[0].classList.toggle("hidden");
+    popup.classList.toggle("hidden");
 }
 
 // About click to handler
-aboutPopupButton.addEventListener("click",toggleAboutPopup);
-closeAboutPopup.addEventListener("click",toggleAboutPopup);
-
-// // Shutdown popup buttons and popup window
-const shutdownPopupButton = document.getElementById("shutdownPopupButton");
-const closeShutdownPopup = document.getElementById("closeShutdownPopupButton");
-
-// Shutdown popup handler
-const toggleShutdownPopup = () => {
-    hideMenus(appleMenu);
-    pop[1].classList.toggle("hidden");
-}
+aboutPopupButton.addEventListener("click", () => togglePopup(aboutPopup));
+closeAboutPopup.addEventListener("click", () => togglePopup(aboutPopup));
 
 // Shutdown click to handler
-// shutdownPopupButton.addEventListener("click",ShutDownProcess);
-shutdownPopupButton.addEventListener("click",toggleShutdownPopup);
-closeShutdownPopupButton.addEventListener("click",toggleShutdownPopup);
-
+shutdownPopupButton.addEventListener("click", () => togglePopup(shutdownPopup));
+closeShutdownPopupButton.addEventListener("click", () => togglePopup(shutdownPopup));
+startShutdownPopupButton.addEventListener("click", () => togglePopup(shutdownPopup));
 
 ///  APPS
 // App specific open or close/minimise or fullscreen buttons, and window groups
@@ -235,117 +238,105 @@ const fullscreenFinderButton = document.getElementById("fullscreenFinderButton")
 const fullscreenWeatherButton = document.getElementById("fullscreenWeatherButton");
 const fullscreenMusicButton = document.getElementById("fullscreenMusicButton");
 
+// App windows
 const apps = document.getElementsByClassName("window__group");
+const finder = document.getElementById("finder");
+const weather = document.getElementById("weather");
+const music = document.getElementById("music");
 
-// App handlers for opening or closing an app
-const toggleFinderApp = () => {
-    apps[0].classList.toggle("hidden")
-    apps[0].classList.remove("fullscreen");
-    // Set position to be left
-    apps[0].style.top = 3.5 + "rem";
-    apps[0].style.left = 1 + "rem";
-    finderButton.classList.toggle("highlight");
-    windowOnTopFinder();
-};
+/**
+ * This callback function opens an app in its original position or closes it
+ * @param {*} app finder, weather, music 
+ */
+const toggleOpenCloseApp = (app) => {
+    app.classList.toggle("hidden");
+    app.classList.remove("fullscreen");
+    app.style.top = 3.5 + "rem";
 
-const toggleWeatherApp = () => {
-    apps[1].classList.toggle("hidden")
-    apps[1].classList.remove("fullscreen");
-    // Set position to be middle
-    apps[1].style.top = 3.5 + "rem";
-    apps[1].style.left = 30 + "rem";
-    weatherButton.classList.toggle("highlight");
-    windowOnTopWeather();
-};
-
-const toggleMusicApp = () => {
-    apps[2].classList.toggle("hidden")
-    apps[2].classList.remove("fullscreen");
-    // Set position to be right
-    apps[2].style.top = 3.5 + "rem";
-    apps[2].style.left = 60 + "rem";
-    musicButton.classList.toggle("highlight");
-    windowOnTopMusic();
-};
+    if (app.id == "finder") {
+        app.style.left = 1 + "rem";
+        appleButton.classList.toggle("highlight");
+        windowOnTopFinder();
+    } else if (app.id == "weather") {
+        app.style.left = 30 + "rem";
+        weatherButton.classList.toggle("highlight");
+        windowOnTopWeather();
+    } else if (app.id == "music") {
+        app.style.left = 60 + "rem";
+        musicButton.classList.toggle("highlight");
+        windowOnTopMusic();
+    }
+}
 
 // App click to handler for open/minimise/closing an app
-finderButton.addEventListener("click",toggleFinderApp);
-closeFinderButton.addEventListener("click",toggleFinderApp);
-minimiseFinderButton.addEventListener("click",toggleFinderApp);
+finderButton.addEventListener("click", () => toggleOpenCloseApp(finder));
+closeFinderButton.addEventListener("click", () => toggleOpenCloseApp(finder));
+minimiseFinderButton.addEventListener("click", () => toggleOpenCloseApp(finder));
 
-weatherButton.addEventListener("click",toggleWeatherApp);
-closeWeatherButton.addEventListener("click",toggleWeatherApp);
-minimiseWeatherButton.addEventListener("click",toggleWeatherApp);
+weatherButton.addEventListener("click", () => toggleOpenCloseApp(weather));
+closeWeatherButton.addEventListener("click", () => toggleOpenCloseApp(weather));
+minimiseWeatherButton.addEventListener("click", () => toggleOpenCloseApp(weather));
 
-musicButton.addEventListener("click",toggleMusicApp);
-closeMusicButton.addEventListener("click",toggleMusicApp);
-minimiseMusicButton.addEventListener("click",toggleMusicApp);
+musicButton.addEventListener("click", () => toggleOpenCloseApp(music));
+closeMusicButton.addEventListener("click", () => toggleOpenCloseApp(music));
+minimiseMusicButton.addEventListener("click", () => toggleOpenCloseApp(music));
 
-// App handlers for fullscreening an app
-const toggleFullscreenFinderApp = () => {
-    apps[0].classList.toggle("fullscreen");
-    apps[0].style.top = 3.5 + "rem";
-    apps[0].style.left = 0 + "rem";
-}
-
-const toggleFullscreenWeatherApp = () => {
-    apps[1].classList.toggle("fullscreen");
-    apps[1].style.top = 3.5 + "rem";
-    apps[1].style.left = 0 + "rem";
-}
-
-const toggleFullscreenMusicApp = () => {
-    apps[2].classList.toggle("fullscreen");
-    apps[2].style.top = 3.5 + "rem";
-    apps[2].style.left = 0 + "rem";
+/**
+ * This callback function makes an app fullscreen or exit fullscreen
+ * @param {*} app finder, weather, music 
+ */
+const toggleFullscreenApp = (app) => {
+    app.classList.toggle("fullscreen");
+    app.style.top = 3.5 + "rem";
+    app.style.left = 0 + "rem";
 }
 
 // App click to handler for fullscreening an app
-fullscreenFinderButton.addEventListener("click",toggleFullscreenFinderApp);
-fullscreenWeatherButton.addEventListener("click",toggleFullscreenWeatherApp);
-fullscreenMusicButton.addEventListener("click",toggleFullscreenMusicApp);
+fullscreenFinderButton.addEventListener("click", () => toggleFullscreenApp(finder));
+fullscreenWeatherButton.addEventListener("click", () => toggleFullscreenApp(weather));
+fullscreenMusicButton.addEventListener("click", () => toggleFullscreenApp(music));
 
 /// MAKE APP APPEAR ON TOP OF THE OTHER APPS & Change title in menu bar
 // Finds the current Z index of each app
-const findZIndex = () => {
-    return [getComputedStyle(apps[0]).zIndex, getComputedStyle(apps[1]).zIndex, getComputedStyle(apps[2]).zIndex];
+const findAppZIndex = () => {
+    return [getComputedStyle(finder).zIndex, getComputedStyle(weather).zIndex, getComputedStyle(music).zIndex];
 }
 
 // Set the current app at the highest z index and reduce the z index of the other apps, Change title in menu bar
 const windowOnTopFinder = () => {
-    let index = findZIndex();
+    let index = findAppZIndex();
     titleButton.innerText = "Finder";
-    if(index[0] < index[1] || index[0] < index[2]) {
-        apps[0].style.zIndex = apps.length;
-        apps[1].style.zIndex--;
-        apps[2].style.zIndex--;
+    if (index[0] < index[1] || index[0] < index[2]) {
+        finder.style.zIndex = apps.length;
+        weather.style.zIndex--;
+        music.style.zIndex--;
     }
 }
 
 const windowOnTopWeather = () => {
-    let index = findZIndex();
+    let index = findAppZIndex();
     titleButton.innerText = "Weather";
     if (index[1] < index[0] || index[1] < index[2]) {
-        apps[0].style.zIndex--;
-        apps[1].style.zIndex = apps.length;
-        apps[2].style.zIndex--;
+        finder.style.zIndex--;
+        weather.style.zIndex = apps.length;
+        music.style.zIndex--;
     }
 }
 
 const windowOnTopMusic = () => {
-    let index = findZIndex();
+    let index = findAppZIndex();
     titleButton.innerText = "Music";
     if (index[2] < index[0] || index[2] < index[1]) {
-        apps[0].style.zIndex--;
-        apps[1].style.zIndex--;
-        apps[2].style.zIndex = apps.length;
+        finder.style.zIndex--;
+        weather.style.zIndex--;
+        music.style.zIndex = apps.length;
     }
 }
 
 // App appear on top click to handlers
-apps[0].addEventListener("click",windowOnTopFinder);
-apps[1].addEventListener("click",windowOnTopWeather);
-apps[2].addEventListener("click",windowOnTopMusic);
+finder.addEventListener("click", windowOnTopFinder);
+weather.addEventListener("click", windowOnTopWeather);
+music.addEventListener("click", windowOnTopMusic);
 
 
 /// DRAGGABLE MODULE
@@ -389,6 +380,6 @@ const dragElement = (elmnt) => {
 }
 
 // App element to handler
-dragElement(document.getElementById("finder"));
-dragElement(document.getElementById("weather"));
-dragElement(document.getElementById("music"));
+dragElement(finder);
+dragElement(weather);
+dragElement(music);
