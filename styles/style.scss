@@ -69,8 +69,11 @@ main {
 
 
 .menu {
+    position: absolute;
+    z-index: 999;
     width: 100vw;
     background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(20px);
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid #212427;
@@ -94,18 +97,20 @@ main {
     }
 }
 .dropdown-area {
+    position: absolute;
     display: flex;
-    justify-content: space-between;
+    z-index: 999;
+    margin-top: 3.22rem;
 }
 
 .dropdown {
     &--left {
-        display: flex;
-        flex-direction: row;
+        float:left;
     }
 
     &__group {
         background-color:  rgba(255, 255, 255, 0.5);
+        float: right;
         display: flex;
         flex-direction: column;
         padding: 0.5rem;
@@ -324,8 +329,8 @@ main {
 }
 
 header {
-    position: absolute;
-    z-index: 500;
+    // position: absolute;
+    z-index: 0;
     top: 0;
 }
 

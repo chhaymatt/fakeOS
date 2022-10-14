@@ -293,8 +293,9 @@ timeDisplay.addEventListener("click", () => {
 
 // Elements
 const menus = document.querySelector(".menu"); // Menu bar
-const dropdowns = document.querySelector(".dropdown-area"); // Dropdown Area
-const mainarea = document.querySelector(".main"); // Main 
+const dropdowns = document.querySelector(".dropdown"); // Dropdown Area
+const main = document.querySelector(".main"); // Main 
+const dock = document.querySelector(".dock");
 
 // Hides menus when clicked outside 
 const clickOutside = (e) => {
@@ -305,8 +306,8 @@ const clickOutside = (e) => {
     }
 };
 // Clicking in the main area should hide the dropdowns
-mainarea.document.addEventListener('click', clickOutside);
-
+main.addEventListener('click', clickOutside);
+dock.addEventListener('click', clickOutside);
 /// POPUPS
 // Popup buttons from menu dropdown
 const aboutPopupButton = document.getElementById("aboutPopupButton");
