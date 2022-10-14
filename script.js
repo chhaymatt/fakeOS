@@ -300,7 +300,7 @@ timeDisplay.addEventListener("click", () => {
 // Hides menus when clicked outside 
 const clickOutside = (e) => {
     if (!menus.contains(e.target) && !dropdowns.contains(e.target)) {
-        hideMenus(appleMenu, fileMenu, titleMenu, editMenu, timeMenu);
+        hide(appleMenu, fileMenu, titleMenu, editMenu, timeMenu);
     }
 };
 
@@ -340,7 +340,11 @@ shutdownPopupButton.addEventListener("click", () => togglePopup(shutdownPopup));
 closeShutdownPopupButton.addEventListener("click", () => togglePopup(shutdownPopup));
 startShutdownPopupButton.addEventListener("click", () => {
     hide(dock, menus, main);
-    togglePopup(shutdownPopup);  
+    togglePopup(shutdownPopup);
+    body.style.backgroundImage = "url('styles/images/desktop_background_2.jpg')";
+    console.log(body.style.backgroundImage);
+    body.style.backgroundSize = "900px";
+    setTimeout(() => window.close(), 5000)
 });
 
 ///  APPS
@@ -431,8 +435,12 @@ const findAppZIndex = () => {
 	];
 };
 
-// Set the current app at the highest z index and reduce the z index of the other apps & change title in menu bar
-
+/**
+ * Sets the current app to be on top of the other apps and change the title in the menu bar
+ * @param {*} arrApps array of apps
+ * @param {*} app specific app to focus on
+ * @param {*} arrIndex app z index
+ */
 const windowOnTop = (arrApps, app, arrIndex = findAppZIndex()) => {
     titleButton.innerText = app.id.charAt(0).toUpperCase()+ app.id.slice(1);
 

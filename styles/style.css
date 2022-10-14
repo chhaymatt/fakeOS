@@ -6,9 +6,13 @@
 }
 
 body {
-  background-image: url(./images/desktop-background-1.png);
-  background-size: auto;
+  background-image: url(./images/desktop_background_1.png);
   overflow: hidden;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #161616;
+  background-origin: content-box;
+  background-position-x: center;
 }
 
 main {
@@ -63,7 +67,7 @@ main {
 .menu {
   position: absolute;
   z-index: 999;
-  width: 100vw;
+  width: 100%;
   background-color: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(20px);
   display: flex;
@@ -86,11 +90,13 @@ main {
 
 .dropdown-area {
   position: absolute;
-  display: flex;
   z-index: 999;
   margin-top: 3.22rem;
 }
 
+.dropdown {
+  width: 100%;
+}
 .dropdown__group {
   background-color: rgba(255, 255, 255, 0.5);
   padding: 0.5rem;
