@@ -28,7 +28,7 @@ const toggleHour = () => {
 		displaySeconds,
 		displayAmpm
 	);
-	hideMenus(timeMenu);
+	hide(timeMenu);
 };
 
 // Toggle full day length setting
@@ -43,7 +43,7 @@ const toggleDayFull = () => {
 		displaySeconds,
 		displayAmpm
 	);
-	hideMenus(timeMenu);
+	hide(timeMenu);
 };
 
 // Toggle full month length setting
@@ -58,7 +58,7 @@ const toggleMonthFull = () => {
 		displaySeconds,
 		displayAmpm
 	);
-	hideMenus(timeMenu);
+	hide(timeMenu);
 };
 
 // Toggle year setting
@@ -73,7 +73,7 @@ const toggleYear = () => {
 		displaySeconds,
 		displayAmpm
 	);
-	hideMenus(timeMenu);
+	hide(timeMenu);
 };
 
 // Toggle settings setting
@@ -88,7 +88,7 @@ const toggleSeconds = () => {
 		displaySeconds,
 		displayAmpm
 	);
-	hideMenus(timeMenu);
+	hide(timeMenu);
 };
 
 // Toggle am/pm setting
@@ -103,7 +103,7 @@ const toggleAmpm = () => {
 		displaySeconds,
 		displayAmpm
 	);
-	hideMenus(timeMenu);
+	hide(timeMenu);
 };
 
 // Time setting click to handler
@@ -245,6 +245,7 @@ const menus = document.querySelector(".menu");
 const dropdowns = document.querySelector(".dropdown");
 const main = document.querySelector(".main");
 const dock = document.querySelector(".dock");
+const body = document.querySelector("body");
 
 /// MENU
 // Menu buttons
@@ -272,11 +273,11 @@ const toggleMenu = (menuToToggle, ...menusToHide) => {
 };
 
 /**
- * Hides menus
- * @param  {...any} menusToHide
+ * Hides elements
+ * @param  {...any} elementsToHide
  */
-const hideMenus = (...menusToHide) => {
-	menusToHide.forEach((menu) => menu.classList.add("hidden"));
+const hide = (...elementsToHide) => {
+	elementsToHide.forEach((element) => element.classList.add("hidden"));
 };
 
 // Menu click to handler
@@ -326,7 +327,7 @@ const shutdownPopup = document.getElementById("shutdownPopup");
  * @param {*} popup aboutPopup, shutdownPopup
  */
 const togglePopup = (popup) => {
-	hideMenus(appleMenu);
+	hide(appleMenu);
 	popup.classList.toggle("hidden");
 };
 
@@ -337,7 +338,10 @@ closeAboutPopup.addEventListener("click", () => togglePopup(aboutPopup));
 // Shutdown click to handler
 shutdownPopupButton.addEventListener("click", () => togglePopup(shutdownPopup));
 closeShutdownPopupButton.addEventListener("click", () => togglePopup(shutdownPopup));
-startShutdownPopupButton.addEventListener("click", () => togglePopup(shutdownPopup));
+startShutdownPopupButton.addEventListener("click", () => {
+    hide(dock, menus, main);
+    togglePopup(shutdownPopup);  
+});
 
 ///  APPS
 // App specific open or close/minimise or fullscreen buttons, and window groups
@@ -375,15 +379,15 @@ const toggleApp = (app) => {
 	if (app.id == "finder") {
 		app.style.left = 1 + "rem";
 		finderButton.classList.toggle("highlight");
-		windowOnTopFinder();
+		windowOnTop(apps, finder);
 	} else if (app.id == "weather") {
 		app.style.left = 30 + "rem";
 		weatherButton.classList.toggle("highlight");
-		windowOnTopWeather();
+		windowOnTop(apps, weather);
 	} else if (app.id == "music") {
 		app.style.left = 60 + "rem";
 		musicButton.classList.toggle("highlight");
-		windowOnTopMusic();
+		windowOnTop(apps, music);
 	}
 };
 
@@ -428,55 +432,36 @@ const findAppZIndex = () => {
 };
 
 // Set the current app at the highest z index and reduce the z index of the other apps & change title in menu bar
-const windowOnTopFinder = () => {
-	let index = findAppZIndex();
-	titleButton.innerText = "Finder";
-	if (index[0] < index[1] || index[0] < index[2]) {
-		let a = apps.length;
-        let b = (index[1] < index[2]) ? 1 : 2;
-        let c = a - b;
 
-        finder.style.zIndex = a;
-        weather.style.zIndex = b;
-		music.style.zIndex = c;
-        console.log(findAppZIndex());
-	}
-};
+const windowOnTop = (arrApps, app, arrIndex = findAppZIndex()) => {
+    titleButton.innerText = app.id.charAt(0).toUpperCase()+ app.id.slice(1);
 
-const windowOnTopWeather = () => {
-	let index = findAppZIndex();
-	titleButton.innerText = "Weather";
-	if (index[1] < index[0] || index[1] < index[2]) {
-		let a = (index[0] < index[2]) ? 1 : 2; 
-        let b = apps.length;
-        let c = b - a;
-
-        finder.style.zIndex = a;
-        weather.style.zIndex = b;
-		music.style.zIndex = c;
-        console.log(findAppZIndex());
-	}
-};
-
-const windowOnTopMusic = () => {
-	let index = findAppZIndex();
-	titleButton.innerText = "Music";
-	if (index[2] < index[0] || index[2] < index[1]) {
-        let c = apps.length;
-        let b = (index[0] < index[1]) ? 2 : 1;
-        let a = c - b; 
-
-        finder.style.zIndex = a;
-        weather.style.zIndex = b;
-		music.style.zIndex = c;
-        console.log(findAppZIndex());
-	}
+    if (app.style.index != 3) {
+        let a, b, c;
+        if (arrIndex[0] != 3 && app.id == arrApps[0].id) {
+            a = arrApps.length;
+            b = (arrIndex[1] < arrIndex[2]) ? 1 : 2;
+            c = a - b;
+        } else if (arrIndex[1] != 3 && app.id == arrApps[1].id) {
+            a = (arrIndex[0] < arrIndex[2]) ? 1 : 2; 
+            b = arrApps.length;
+            c = b - a;
+        } else if (arrIndex[2] != 3 && app.id == arrApps[2].id) {
+            c = arrApps.length;
+            b = (arrIndex[0] < arrIndex[1]) ? 2 : 1;
+            a = c - b; 
+        }
+        arrApps[0].style.zIndex = a;
+        arrApps[1].style.zIndex = b;
+        arrApps[2].style.zIndex = c;
+    
+    }
 };
 
 // App appear on top click to handlers
-finder.addEventListener("click", windowOnTopFinder);
-weather.addEventListener("click", windowOnTopWeather);
-music.addEventListener("click", windowOnTopMusic);
+finder.addEventListener("click", () => windowOnTop(apps, finder));
+weather.addEventListener("click", () => windowOnTop(apps, weather));
+music.addEventListener("click", () => windowOnTop(apps, music));
 
 /// DRAGGABLE MODULE
 // Source: https://www.w3schools.com/howto/howto_js_draggable.asp
