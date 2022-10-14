@@ -240,6 +240,12 @@ setInterval(
 	1000
 );
 
+/// KEY ELEMENTS
+const menus = document.querySelector(".menu");
+const dropdowns = document.querySelector(".dropdown");
+const main = document.querySelector(".main");
+const dock = document.querySelector(".dock");
+
 /// MENU
 // Menu buttons
 const appleButton = document.getElementById("appleButton");
@@ -255,7 +261,6 @@ const fileMenu = document.getElementById("fileMenu");
 const editMenu = document.getElementById("editMenu");
 const timeMenu = document.getElementById("timeMenu");
 
-
 /**
  * toggleMenu displays a selected menu based on user click and hides the other menus
  * @param {*} menuToToggle Display the required menu e.g. appleMenu
@@ -267,7 +272,7 @@ const toggleMenu = (menuToToggle, ...menusToHide) => {
 };
 
 /**
- * Hides menus - TODO: after a user clicks inside a dropdown or outside the dropdown
+ * Hides menus
  * @param  {...any} menusToHide
  */
 const hideMenus = (...menusToHide) => {
@@ -291,23 +296,18 @@ timeDisplay.addEventListener("click", () => {
 	toggleMenu(timeMenu, titleMenu, fileMenu, appleMenu, editMenu);
 });
 
-// Elements
-const menus = document.querySelector(".menu"); // Menu bar
-const dropdowns = document.querySelector(".dropdown"); // Dropdown Area
-const main = document.querySelector(".main"); // Main 
-const dock = document.querySelector(".dock");
+// ISSUE 2: An app may become unclickable
+// // Hides menus when clicked outside 
+// const clickOutside = (e) => {
+//     if (!menus.contains(e.target) && !dropdowns.contains(e.target)) {
+//         hideMenus(appleMenu, fileMenu, titleMenu, editMenu, timeMenu);
+//     }
+// };
 
-// Hides menus when clicked outside 
-const clickOutside = (e) => {
-    // create a variable holding the document.querySelector, for each element you dont want to set off the event
-    if(!menus.contains(e.target) && !dropdowns.contains(e.target)) {
-        console.log("I've been clicked outside, hide the menu dropdowns!")
-        hideMenus(appleMenu, fileMenu, titleMenu, editMenu, timeMenu);
-    }
-};
-// Clicking in the main area should hide the dropdowns
-main.addEventListener('click', clickOutside);
-dock.addEventListener('click', clickOutside);
+// // Clicking outside of the menu or dropdown causes apps to close
+// main.addEventListener('click', clickOutside);
+// dock.addEventListener('click', clickOutside);
+
 /// POPUPS
 // Popup buttons from menu dropdown
 const aboutPopupButton = document.getElementById("aboutPopupButton");

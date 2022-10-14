@@ -16,6 +16,8 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
+    width: 100vw;
 }
 
 .popup {
@@ -104,24 +106,13 @@ main {
 }
 
 .dropdown {
-    &--left {
-        float:left;
-    }
 
     &__group {
         background-color:  rgba(255, 255, 255, 0.5);
-        float: right;
-        display: flex;
-        flex-direction: column;
         padding: 0.5rem;
-        border-right: 1px solid #212427;
-        border-bottom: 1px solid #212427;
         backdrop-filter: blur(20px);
-
-        &--right {
-            border-left: 1px solid #212427;
-            border-right: 0px;
-        }
+        border-bottom: 1px solid #212427;
+        border-right: 1px solid #212427;
     }
 
     &__button {
@@ -328,11 +319,6 @@ main {
     }
 }
 
-header {
-    // position: absolute;
-    z-index: 0;
-    top: 0;
-}
 
 // JS modal toggles
 .hidden {

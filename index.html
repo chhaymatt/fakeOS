@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./styles/style.css">
-        <script defer src="script.js"></script>
+        <script defer type="module" src="script.js"></script>
         <!-- Font Awesome -->
         <script src="https://kit.fontawesome.com/c3aaf1830b.js" crossorigin="anonymous"></script>
         <!-- Favicon using https://favicon.io/favicon-generator/ -->
@@ -45,7 +45,7 @@
                 </div>
             </div>
             <div class="dropdown-area">
-                <div class="dropdown dropdown--left">
+                <div class="dropdown">
                     <!-- Apple Menu -->
                     <div class="dropdown__group hidden" id="appleMenu">
                         <div class="dropdown__button dropdown__button--border" id="aboutPopupButton">About This Mac</div>
@@ -181,9 +181,9 @@
                         <div class="dropdown__button disabled">Emoji & Symbols<i class="fa-solid fa-globe"></i></div>
                     </div>
                 </div>
-                <div class="dropdown dropdown--right">
+                <div class="dropdown">
                     <!-- Time Menu -->
-                    <div class="dropdown__group dropdown__group--right hidden" id="timeMenu">
+                    <div class="dropdown__group hidden" id="timeMenu">
                         <div class="dropdown__button" id="hourButton">Show 24-hour time</div>
                         <div class="dropdown__button" id="secondsButton">Hide seconds</div>
                         <div class="dropdown__button" id="ampmButton">Hide am/pm</div>
