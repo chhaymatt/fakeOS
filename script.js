@@ -296,17 +296,16 @@ timeDisplay.addEventListener("click", () => {
 	toggleMenu(timeMenu, titleMenu, fileMenu, appleMenu, editMenu);
 });
 
-// ISSUE 2: An app may become unclickable
-// // Hides menus when clicked outside 
-// const clickOutside = (e) => {
-//     if (!menus.contains(e.target) && !dropdowns.contains(e.target)) {
-//         hideMenus(appleMenu, fileMenu, titleMenu, editMenu, timeMenu);
-//     }
-// };
+// Hides menus when clicked outside 
+const clickOutside = (e) => {
+    if (!menus.contains(e.target) && !dropdowns.contains(e.target)) {
+        hideMenus(appleMenu, fileMenu, titleMenu, editMenu, timeMenu);
+    }
+};
 
-// // Clicking outside of the menu or dropdown causes apps to close
-// main.addEventListener('click', clickOutside);
-// dock.addEventListener('click', clickOutside);
+// Clicking outside of the menu or dropdown causes apps to close
+main.addEventListener('click', clickOutside);
+dock.addEventListener('click', clickOutside);
 
 /// POPUPS
 // Popup buttons from menu dropdown
@@ -428,14 +427,19 @@ const findAppZIndex = () => {
 	];
 };
 
-// Set the current app at the highest z index and reduce the z index of the other apps, Change title in menu bar
+// Set the current app at the highest z index and reduce the z index of the other apps & change title in menu bar
 const windowOnTopFinder = () => {
 	let index = findAppZIndex();
 	titleButton.innerText = "Finder";
 	if (index[0] < index[1] || index[0] < index[2]) {
-		finder.style.zIndex = apps.length;
-		weather.style.zIndex--;
-		music.style.zIndex--;
+		let a = apps.length;
+        let b = (index[1] < index[2]) ? 1 : 2;
+        let c = a - b;
+
+        finder.style.zIndex = a;
+        weather.style.zIndex = b;
+		music.style.zIndex = c;
+        console.log(findAppZIndex());
 	}
 };
 
@@ -443,9 +447,14 @@ const windowOnTopWeather = () => {
 	let index = findAppZIndex();
 	titleButton.innerText = "Weather";
 	if (index[1] < index[0] || index[1] < index[2]) {
-		finder.style.zIndex--;
-		weather.style.zIndex = apps.length;
-		music.style.zIndex--;
+		let a = (index[0] < index[2]) ? 1 : 2; 
+        let b = apps.length;
+        let c = b - a;
+
+        finder.style.zIndex = a;
+        weather.style.zIndex = b;
+		music.style.zIndex = c;
+        console.log(findAppZIndex());
 	}
 };
 
@@ -453,9 +462,14 @@ const windowOnTopMusic = () => {
 	let index = findAppZIndex();
 	titleButton.innerText = "Music";
 	if (index[2] < index[0] || index[2] < index[1]) {
-		finder.style.zIndex--;
-		weather.style.zIndex--;
-		music.style.zIndex = apps.length;
+        let c = apps.length;
+        let b = (index[0] < index[1]) ? 2 : 1;
+        let a = c - b; 
+
+        finder.style.zIndex = a;
+        weather.style.zIndex = b;
+		music.style.zIndex = c;
+        console.log(findAppZIndex());
 	}
 };
 

@@ -22,13 +22,7 @@ Replicating the layout and format of the Mac operating system using HTML, SCSS a
 
 # Release Notes
 ## Known Issues
-### Issue 1
-#### Symptom
-- clickOutside function may cause an app to stop responding (can't be dragged or clicked to the front)
-#### Work around
-- Commented out the clickOutside function and menu dropdowns have to be closed by clicking on the most recent menu button
-
-## Issue 2
+## Issue 1
 ### Symptom
 - Time menu dropdown appears to the left instead of the right
 
