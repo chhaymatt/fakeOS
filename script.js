@@ -338,14 +338,16 @@ closeAboutPopup.addEventListener("click", () => togglePopup(aboutPopup));
 // Shutdown click to handler
 shutdownPopupButton.addEventListener("click", () => togglePopup(shutdownPopup));
 closeShutdownPopupButton.addEventListener("click", () => togglePopup(shutdownPopup));
-startShutdownPopupButton.addEventListener("click", () => {
-    hide(dock, menus, main);
+startShutdownPopupButton.addEventListener("click", () => toggleShutdown());
+
+// User clicks shut down, the page will go blank and close itself after 5 seconds
+const toggleShutdown = () => {
+	hide(dock, menus, main);
     togglePopup(shutdownPopup);
     body.style.backgroundImage = "url('styles/images/desktop_background_2.jpg')";
-    console.log(body.style.backgroundImage);
     body.style.backgroundSize = "900px";
-    setTimeout(() => window.close(), 5000)
-});
+    setTimeout(() => window.close(), 5000);
+}
 
 ///  APPS
 // App specific open or close/minimise or fullscreen buttons, and window groups
