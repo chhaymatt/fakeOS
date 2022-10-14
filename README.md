@@ -30,5 +30,5 @@ Replicating the layout and format of the Mac operating system using HTML, SCSS a
 
 ## Issue 2
 ### Symptom
-- Time menu dropdown appears to the right
+- Time menu dropdown appears to the left instead of the right
 
