@@ -49,9 +49,7 @@ const toggleDayFull = () => {
 // Toggle full month length setting
 const toggleMonthFull = () => {
 	displayFullMonth = !displayFullMonth;
-	monthFullButton.innerText = displayFullMonth
-		? "Hide full month"
-		: "Show full month";
+	monthFullButton.innerText = displayFullMonth ? "Hide full month" : "Show full month";
 	time(
 		display12,
 		displayFullDay,
@@ -249,7 +247,6 @@ const titleButton = document.getElementById("titleButton");
 const fileButton = document.getElementById("fileButton");
 const editButton = document.getElementById("editButton");
 const timeDisplay = document.getElementById("timeDisplay");
-const menus = document.getElementsByClassName("menu__group");
 
 // Dropdown groups
 const appleMenu = document.getElementById("appleMenu");
@@ -257,7 +254,7 @@ const titleMenu = document.getElementById("titleMenu");
 const fileMenu = document.getElementById("fileMenu");
 const editMenu = document.getElementById("editMenu");
 const timeMenu = document.getElementById("timeMenu");
-const dropdowns = document.getElementsByClassName("dropdown__group");
+
 
 /**
  * toggleMenu displays a selected menu based on user click and hides the other menus
@@ -294,15 +291,21 @@ timeDisplay.addEventListener("click", () => {
 	toggleMenu(timeMenu, titleMenu, fileMenu, appleMenu, editMenu);
 });
 
-// Hides menus when clicked outside 
-// const removeDropdowns = (e) => {
-//     console.log("I'm clicked outside of the menu area");
-//     if (!menus.contains(e.target) && !dropdowns.contains(e.target)) {
-//     hideMenus(appleMenu, fileMenu, titleMenu, editMenu, timeMenu);
-//     }
-// };
+// Elements
+const menus = document.querySelector(".menu"); // Menu bar
+const dropdowns = document.querySelector(".dropdown-area"); // Dropdown Area
+const mainarea = document.querySelector(".main"); // Main 
 
-// document.getElementsByClassName("main").addEventListener("click", removeDropdowns);
+// Hides menus when clicked outside 
+const clickOutside = (e) => {
+    // create a variable holding the document.querySelector, for each element you dont want to set off the event
+    if(!menus.contains(e.target) && !dropdowns.contains(e.target)) {
+        console.log("I've been clicked outside, hide the menu dropdowns!")
+        hideMenus(appleMenu, fileMenu, titleMenu, editMenu, timeMenu);
+    }
+};
+// Clicking in the main area should hide the dropdowns
+mainarea.document.addEventListener('click', clickOutside);
 
 /// POPUPS
 // Popup buttons from menu dropdown
@@ -333,12 +336,8 @@ closeAboutPopup.addEventListener("click", () => togglePopup(aboutPopup));
 
 // Shutdown click to handler
 shutdownPopupButton.addEventListener("click", () => togglePopup(shutdownPopup));
-closeShutdownPopupButton.addEventListener("click", () =>
-	togglePopup(shutdownPopup)
-);
-startShutdownPopupButton.addEventListener("click", () =>
-	togglePopup(shutdownPopup)
-);
+closeShutdownPopupButton.addEventListener("click", () => togglePopup(shutdownPopup));
+startShutdownPopupButton.addEventListener("click", () => togglePopup(shutdownPopup));
 
 ///  APPS
 // App specific open or close/minimise or fullscreen buttons, and window groups

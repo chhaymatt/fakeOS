@@ -232,6 +232,7 @@ main {
 
             &:hover {
                 background-color: rgb(199, 84, 103);
+                cursor: default;
             }
         }
 
@@ -241,6 +242,7 @@ main {
 
             &:hover {
                 background-color: rgb(173, 113, 1);
+                cursor: default;
             }
         }
 
@@ -250,6 +252,7 @@ main {
 
             &:hover {
                 background-color: rgb(38, 115, 38);
+                cursor: default;
             }
         }
     }
@@ -378,4 +381,5 @@ header {
 
 .disabled {
     color: rgba(33, 36, 39, 0.5);
+    cursor: not-allowed;
 }

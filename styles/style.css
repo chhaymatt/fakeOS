@@ -195,6 +195,7 @@ main {
 }
 .window__button--close:hover {
   background-color: rgb(199, 84, 103);
+  cursor: default;
 }
 .window__button--minimise {
   background-color: orange;
@@ -202,6 +203,7 @@ main {
 }
 .window__button--minimise:hover {
   background-color: rgb(173, 113, 1);
+  cursor: default;
 }
 .window__button--fullscreen {
   background-color: rgb(57, 170, 57);
@@ -209,6 +211,7 @@ main {
 }
 .window__button--fullscreen:hover {
   background-color: rgb(38, 115, 38);
+  cursor: default;
 }
 .window__content {
   display: flex;
@@ -321,4 +324,5 @@ header {
 
 .disabled {
   color: rgba(33, 36, 39, 0.5);
+  cursor: not-allowed;
 }
