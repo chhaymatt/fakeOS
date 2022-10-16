@@ -344,6 +344,7 @@ startShutdownPopupButton.addEventListener("click", () => toggleShutdown());
 const toggleShutdown = () => {
 	hide(dock, menus, main);
     togglePopup(shutdownPopup);
+	body.style.backgroundColor = "#161616";
     body.style.backgroundImage = "url('styles/images/desktop_background_2.jpg')";
     body.style.backgroundSize = "900px";
     setTimeout(() => window.close(), 5000);
