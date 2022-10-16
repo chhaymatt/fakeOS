@@ -24,9 +24,4 @@ Replicating the layout and format of the Mac operating system using HTML, SCSS a
 ## Known Issues
 ## Issue 1
 ### Symptom
-- Time menu dropdown appears to the left instead of the right
-
-## Issue 2
-### Symptom
 - Dragging an app does not appear on top of the other apps until click release
-
