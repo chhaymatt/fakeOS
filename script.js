@@ -263,16 +263,6 @@ const editMenu = document.getElementById("editMenu");
 const timeMenu = document.getElementById("timeMenu");
 
 /**
- * toggleMenu displays a selected menu based on user click and hides the other menus
- * @param {*} menuToToggle Display the required menu e.g. appleMenu
- * @param  {...any} menusToHide Spread operator captures the remaining menus and hides them e.g. fileMenu, titleMenu, etc.
- */
-const toggleMenu = (menuToToggle, ...menusToHide) => {
-	menuToToggle.classList.toggle("hidden");
-	menusToHide.forEach((menu) => menu.classList.add("hidden"));
-};
-
-/**
  * Hides elements
  * @param  {...any} elementsToHide
  */
@@ -280,21 +270,32 @@ const hide = (...elementsToHide) => {
 	elementsToHide.forEach((element) => element.classList.add("hidden"));
 };
 
+/**
+ * toggleMenu displays a selected menu based on user click and hides the other menus
+ * @param {*} menuToToggle Display the required menu e.g. appleMenu
+ * @param  {Array} menusToHide An array of menus to hide
+ */
+ const toggleMenu = (menuToToggle, menusToHide) => {
+	menuToToggle.classList.toggle("hidden");
+	hide(...menusToHide);
+};
+
+
 // Menu click to handler
 appleButton.addEventListener("click", () => {
-	toggleMenu(appleMenu, fileMenu, titleMenu, editMenu, timeMenu);
+	toggleMenu(appleMenu, [fileMenu, titleMenu, editMenu, timeMenu]);
 });
 titleButton.addEventListener("click", () => {
-	toggleMenu(titleMenu, appleMenu, fileMenu, editMenu, timeMenu);
+	toggleMenu(titleMenu, [appleMenu, fileMenu, editMenu, timeMenu]);
 });
 fileButton.addEventListener("click", () => {
-	toggleMenu(fileMenu, appleMenu, editMenu, titleMenu, timeMenu);
+	toggleMenu(fileMenu, [appleMenu, editMenu, titleMenu, timeMenu]);
 });
 editButton.addEventListener("click", () => {
-	toggleMenu(editMenu, titleMenu, fileMenu, appleMenu, timeMenu);
+	toggleMenu(editMenu, [titleMenu, fileMenu, appleMenu, timeMenu]);
 });
 timeDisplay.addEventListener("click", () => {
-	toggleMenu(timeMenu, titleMenu, fileMenu, appleMenu, editMenu);
+	toggleMenu(timeMenu, [titleMenu, fileMenu, appleMenu, editMenu]);
 });
 
 // Hides menus when clicked outside 
