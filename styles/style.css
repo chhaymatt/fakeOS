@@ -208,30 +208,6 @@ main {
   border-radius: 5rem;
   margin-right: 0.5rem;
 }
-.window__button--close {
-  background-color: rgb(255, 107, 131);
-  border: 1px solid rgb(199, 84, 103);
-}
-.window__button--close:hover {
-  background-color: rgb(199, 84, 103);
-  cursor: default;
-}
-.window__button--minimise {
-  background-color: orange;
-  border: 1px solid rgb(173, 113, 1);
-}
-.window__button--minimise:hover {
-  background-color: rgb(173, 113, 1);
-  cursor: default;
-}
-.window__button--fullscreen {
-  background-color: rgb(57, 170, 57);
-  border: 1px solid rgb(38, 115, 38);
-}
-.window__button--fullscreen:hover {
-  background-color: rgb(38, 115, 38);
-  cursor: default;
-}
 .window__content {
   display: flex;
   flex-direction: row;
@@ -338,4 +314,38 @@ main {
 .disabled {
   color: rgba(33, 36, 39, 0.5);
   cursor: not-allowed;
+}
+
+.appButton {
+  height: 20px;
+  width: 20px;
+  border-radius: 5rem;
+  margin-right: 0.5rem;
+}
+
+.closeButton {
+  background-color: rgb(255, 107, 131);
+  border: 1px solid rgb(199, 84, 103);
+}
+.closeButton:hover {
+  background-color: rgb(199, 84, 103);
+  cursor: default;
+}
+
+.minButton {
+  background-color: orange;
+  border: 1px solid rgb(173, 113, 1);
+}
+.minButton:hover {
+  background-color: rgb(173, 113, 1);
+  cursor: default;
+}
+
+.fullscreenButton {
+  background-color: rgb(57, 170, 57);
+  border: 1px solid rgb(38, 115, 38);
+}
+.fullscreenButton:hover {
+  background-color: rgb(38, 115, 38);
+  cursor: default;
 }

@@ -3,7 +3,7 @@
 https://chhaymatt.github.io/fakeOS/
 
 ## Introduction
-Replicating the layout and format of the Mac operating system using HTML, SCSS and controlling interactive elements with JS.
+Replicating the layout and format of the Mac operating system using HTML, SCSS, and JS.
 
 ## Preview
 ![Preview of Matthew Chhay's fakeOS](https://i.imgur.com/q50wJeP.png)

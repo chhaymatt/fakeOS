@@ -273,7 +273,7 @@ const hide = (...elementsToHide) => {
 /**
  * toggleMenu displays a selected menu based on user click and hides the other menus
  * @param {*} menuToToggle Display the required menu e.g. appleMenu
- * @param  {Array} menusToHide An array of menus to hide
+ * @param {Array} menusToHide An array of menus to hide
  */
  const toggleMenu = (menuToToggle, menusToHide) => {
 	menuToToggle.classList.toggle("hidden");
@@ -354,20 +354,8 @@ const toggleShutdown = () => {
 ///  APPS
 // App specific open or close/minimise or fullscreen buttons, and window groups
 const finderButton = document.getElementById("finderButton");
-const closeFinderButton = document.getElementById("closeFinderButton");
-const minFinderButton = document.getElementById("minFinderButton");
-
 const weatherButton = document.getElementById("weatherButton");
-const closeWeatherButton = document.getElementById("closeWeatherButton");
-const minWeatherButton = document.getElementById("minWeatherButton");
-
 const musicButton = document.getElementById("musicButton");
-const closeMusicButton = document.getElementById("closeMusicButton");
-const minMusicButton = document.getElementById("minMusicButton");
-
-const fullscreenFinderButton = document.getElementById("fullscreenFinderButton");
-const fullscreenWeatherButton = document.getElementById("fullscreenWeatherButton");
-const fullscreenMusicButton = document.getElementById("fullscreenMusicButton");
 
 // App windows
 const apps = document.getElementsByClassName("window__group");
@@ -399,20 +387,22 @@ const toggleApp = (app) => {
 	}
 };
 
-// App click to handler for open/minimise/closing an app
+// App window button logic to handler for minimise/closing and fullscreening
+const windowButtonLogic = (app) => {
+	app.querySelector(".minButton").addEventListener("click", () => toggleApp(app));
+	app.querySelector(".closeButton").addEventListener("click", () => toggleApp(app));
+	app.querySelector(".fullscreenButton").addEventListener("click", () => toggleFullscreenApp(app));
+}
+
+// App window buttons to logic
+windowButtonLogic(finder);
+windowButtonLogic(weather);
+windowButtonLogic(music);
+
+// Dock app buttons to handler
 finderButton.addEventListener("click", () => toggleApp(finder));
-closeFinderButton.addEventListener("click", () => toggleApp(finder));
-minFinderButton.addEventListener("click", () => toggleApp(finder)
-);
-
 weatherButton.addEventListener("click", () => toggleApp(weather));
-closeWeatherButton.addEventListener("click", () => toggleApp(weather));
-minWeatherButton.addEventListener("click", () => toggleApp(weather)
-);
-
 musicButton.addEventListener("click", () => toggleApp(music));
-closeMusicButton.addEventListener("click", () => toggleApp(music));
-minMusicButton.addEventListener("click", () => toggleApp(music));
 
 /**
  * This callback function makes an app fullscreen or exit fullscreen
@@ -423,11 +413,6 @@ const toggleFullscreenApp = (app) => {
 	app.style.top = 3.5 + "rem";
 	app.style.left = 0 + "rem";
 };
-
-// App click to handler for fullscreening an app
-fullscreenFinderButton.addEventListener("click", () => toggleFullscreenApp(finder));
-fullscreenWeatherButton.addEventListener("click", () => toggleFullscreenApp(weather));
-fullscreenMusicButton.addEventListener("click", () => toggleFullscreenApp(music));
 
 /// MAKE APP APPEAR ON TOP OF THE OTHER APPS & Change title in menu bar
 // Finds the current Z index of each app
@@ -485,17 +470,6 @@ const dragElement = (elmnt) => {
 		pos3 = 0,
 		pos4 = 0;
 
-	const dragMouseDown = (e) => {
-		e = e || window.event;
-		e.preventDefault();
-		// get the mouse cursor position at startup:
-		pos3 = e.clientX;
-		pos4 = e.clientY;
-		document.onmouseup = closeDragElement;
-		// call a function whenever the cursor moves:
-		document.onmousemove = elementDrag;
-	};
-
 	const elementDrag = (e) => {
 		e = e || window.event;
 		e.preventDefault();
@@ -511,14 +485,24 @@ const dragElement = (elmnt) => {
 
 	const closeDragElement = () => {
 		// stop moving when mouse button is released:
-		document.onmouseup = null;
-		document.onmousemove = null;
+		document.removeEventListener("mouseup", closeDragElement);
+		document.removeEventListener("mousemove", elementDrag);
 	};
 
+	const dragMouseDown = (e) => {
+		e = e || window.event;
+		e.preventDefault();
+		// get the mouse cursor position at startup:
+		pos3 = e.clientX;
+		pos4 = e.clientY;
+		document.addEventListener("mouseup", closeDragElement);
+		// call a function whenever the cursor moves:
+		document.addEventListener("mousemove", elementDrag);
+	};
 	document.getElementById(elmnt.id + "Header").onmousedown = dragMouseDown;
 };
 
-// App element to handler
+// App element to drag handler
 dragElement(finder);
 dragElement(weather);
 dragElement(music);
