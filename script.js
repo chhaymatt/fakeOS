@@ -1,3 +1,5 @@
+import {dragElement} from "./modules/dragElement.js";
+import {windowOnTop} from "./modules/windowOnTop.js";
 /// DATE AND TIME MODULE
 // Date and time buttons
 const hourButton = document.getElementById("hourButton");
@@ -358,10 +360,10 @@ const weatherButton = document.getElementById("weatherButton");
 const musicButton = document.getElementById("musicButton");
 
 // App windows
-const apps = document.getElementsByClassName("window__group");
 const finder = document.getElementById("finder");
 const weather = document.getElementById("weather");
 const music = document.getElementById("music");
+const apps = [finder, weather, music];
 
 /**
  * This callback function opens an app in its original position or closes it
@@ -375,15 +377,15 @@ const toggleApp = (app) => {
 	if (app.id == "finder") {
 		app.style.left = 1 + "rem";
 		finderButton.classList.toggle("highlight");
-		windowOnTop(apps, finder);
+		windowOnTop(finder, apps, titleButton);
 	} else if (app.id == "weather") {
 		app.style.left = 30 + "rem";
 		weatherButton.classList.toggle("highlight");
-		windowOnTop(apps, weather);
+		windowOnTop(weather, apps, titleButton);
 	} else if (app.id == "music") {
 		app.style.left = 60 + "rem";
 		musicButton.classList.toggle("highlight");
-		windowOnTop(apps, music);
+		windowOnTop(music, apps, titleButton);
 	}
 };
 
@@ -414,93 +416,11 @@ const toggleFullscreenApp = (app) => {
 	app.style.left = 0 + "rem";
 };
 
-/// MAKE APP APPEAR ON TOP OF THE OTHER APPS & Change title in menu bar
-// Finds the current Z index of each app
-const findAppZIndex = () => {
-	return [
-		getComputedStyle(finder).zIndex,
-		getComputedStyle(weather).zIndex,
-		getComputedStyle(music).zIndex,
-	];
-};
-
-/**
- * Sets the current app to be on top of the other apps and change the title in the menu bar
- * @param {*} arrApps array of apps
- * @param {*} app specific app to focus on
- * @param {*} arrIndex app z index
- */
-const windowOnTop = (arrApps, app, arrIndex = findAppZIndex()) => {
-    titleButton.innerText = app.id.charAt(0).toUpperCase()+ app.id.slice(1);
-
-    if (app.style.index != 3) {
-        let a, b, c;
-        if (arrIndex[0] != 3 && app.id == arrApps[0].id) {
-            a = arrApps.length;
-            b = (arrIndex[1] < arrIndex[2]) ? 1 : 2;
-            c = a - b;
-        } else if (arrIndex[1] != 3 && app.id == arrApps[1].id) {
-            a = (arrIndex[0] < arrIndex[2]) ? 1 : 2; 
-            b = arrApps.length;
-            c = b - a;
-        } else if (arrIndex[2] != 3 && app.id == arrApps[2].id) {
-            c = arrApps.length;
-            b = (arrIndex[0] < arrIndex[1]) ? 2 : 1;
-            a = c - b; 
-        }
-        arrApps[0].style.zIndex = a;
-        arrApps[1].style.zIndex = b;
-        arrApps[2].style.zIndex = c;
-    
-    }
-};
-
 // App appear on top click to handlers
-finder.addEventListener("click", () => windowOnTop(apps, finder));
-weather.addEventListener("click", () => windowOnTop(apps, weather));
-music.addEventListener("click", () => windowOnTop(apps, music));
+finder.addEventListener("click", () => windowOnTop(finder, apps, titleButton));
+weather.addEventListener("click", () => windowOnTop(weather, apps, titleButton));
+music.addEventListener("click", () => windowOnTop(music, apps, titleButton));
 
-/// DRAGGABLE MODULE
-// Source: https://www.w3schools.com/howto/howto_js_draggable.asp
-
-// Draggable handler
-const dragElement = (elmnt) => {
-	let pos1 = 0,
-		pos2 = 0,
-		pos3 = 0,
-		pos4 = 0;
-
-	const elementDrag = (e) => {
-		e = e || window.event;
-		e.preventDefault();
-		// calculate the new cursor position:
-		pos1 = pos3 - e.clientX;
-		pos2 = pos4 - e.clientY;
-		pos3 = e.clientX;
-		pos4 = e.clientY;
-		// set the element's new position:
-		elmnt.style.top = elmnt.offsetTop - pos2 + "px";
-		elmnt.style.left = elmnt.offsetLeft - pos1 + "px";
-	};
-
-	const closeDragElement = () => {
-		// stop moving when mouse button is released:
-		document.removeEventListener("mouseup", closeDragElement);
-		document.removeEventListener("mousemove", elementDrag);
-	};
-
-	const dragMouseDown = (e) => {
-		e = e || window.event;
-		e.preventDefault();
-		// get the mouse cursor position at startup:
-		pos3 = e.clientX;
-		pos4 = e.clientY;
-		document.addEventListener("mouseup", closeDragElement);
-		// call a function whenever the cursor moves:
-		document.addEventListener("mousemove", elementDrag);
-	};
-	document.getElementById(elmnt.id + "Header").onmousedown = dragMouseDown;
-};
 
 // App element to drag handler
 dragElement(finder);
