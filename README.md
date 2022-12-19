@@ -9,19 +9,19 @@
 
 ## Table of Contents <!-- omit in toc -->
 
--   [Introduction](#introduction)
--   [Features](#features)
--   [Technologies Used](#technologies-used)
--   [Screenshots](#screenshots)
--   [MVP](#mvp)
-    -   [HTML/SCSS](#htmlscss)
-    -   [JavaScript](#javascript)
--   [Setup](#setup)
-    -   [For viewing locally](#for-viewing-locally)
-    -   [For further development](#for-further-development)
--   [Tools Used](#tools-used)
--   [Project Status](#project-status)
--   [Room for Improvement](#room-for-improvement)
+- [Introduction](#introduction)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Screenshots](#screenshots)
+- [MVP](#mvp)
+  - [HTML/SCSS](#htmlscss)
+  - [JavaScript](#javascript)
+- [Setup](#setup)
+  - [For viewing locally](#for-viewing-locally)
+  - [For further development](#for-further-development)
+- [Tools Used](#tools-used)
+- [Project Status](#project-status)
+- [Room for Improvement](#room-for-improvement)
 
 ## Introduction
 
@@ -43,7 +43,7 @@ Replicating the layout and format of the Mac operating system using HTML, SCSS, 
 ## Screenshots
 
 ![Apple menu bar](https://i.imgur.com/SKPdKm7.png)
-![User changeable date and time format](https:/i.imgur.com/2idqwp4.png)
+![User changeable date and time format](https://i.imgur.com/2idqwp4.png)
 ![Full screen](https://i.imgur.com/RZujsXI.png)
 
 ## MVP
@@ -83,7 +83,6 @@ Replicating the layout and format of the Mac operating system using HTML, SCSS, 
 -   Live Server - to see live locally without refreshing. [Get Live Server Extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
 -   Prettier - to tidy up code in spacing and structure. [Get Prettier Extension](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 -   Font Awesome - a library of icons that can be imported easily. [Get Font Awesome icons](https://fontawesome.com/start)
--   Hero Patterns - a collection of background patterns. [Get patterns via Hero Patterns](https://heropatterns.com/)
 -   Favicon.io - generate a favicon. [Generate favicon](https://favicon.io/favicon-generator/)
 -   Meta Tags - generate metadata. [Generate metadata](https://metatags.io/)
 -   Coolors - colour palette generator. [Generate colour palette](https://coolors.co/generate)
